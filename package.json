@@ -1,6 +1,6 @@
 {
   "name": "dush",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": ":clap: Minimalist `npm.im/dual-emitter` observer - event handling for the browser (IE8+) and nodejs.",
   "repository": "tunnckoCore/dush",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
