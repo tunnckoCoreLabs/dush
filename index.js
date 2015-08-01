@@ -25,22 +25,24 @@ function Dush ($) {
     v = op.toString.call(v)
     return /(?:HTML)?(?:.*)Element/gi.test(v)
   }
-  $.on = function (n, f, e) {
+  $.on = function (n, f, e, i) {
     $._e[n] = $._e[n] || []
     $._e[n].push(f)
 
     if (e && $._d(e)) {
       f[o] = e[o]
-      e['add' + l] ? e['add' + l](n, f, 0) : e.attachEvent('on' + n, f)
+      i = e['add' + l]
+      i ? i(n, f, 0) : e.attachEvent('on' + n, f)
     }
     return $
   }
-  $.off = function (n, f, e) {
+  $.off = function (n, f, e, i) {
     if (!has.call($._e, n)) {return $}
     $._e[n].splice($._e[n].indexOf(f), 1)
 
     if (e && $._d(e)) {
-      e['remove' + l] ? e['remove' + l](n, f, 0) : e.detachEvent('on' + n, f)
+      i = e['remove' + l]
+      i ? i(n, f, 0) : e.detachEvent('on' + n, f)
     }
     return $
   }
