@@ -4,11 +4,36 @@
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][cov-img]][cov-url] [![dependency status][david-img]][david-url]
 
+*PRs welcome for client-side tests*
 
 ## Install
 ```
 npm i dush --save
 npm test
+```
+
+
+## Features
+- minimal, yet simple to use - [demo in jsbin](http://jsbin.com/qiqirunoju/1/edit?js,console,output)
+- zero dependencies - just [1.5kb minified](./dist/dush.standalone.min.js)
+- works on every browser, should **even works on IE8**
+- works on the server with just `require('dush')`
+- plays well with [browserify.org](http://browserify.org)
+- have `.on`, `.off`, `.once` and `.emit` methods
+
+
+## Use some from `dist/` folder
+- [dist/dush.js](./dist/dush.js) (*6kb*)
+- [dist/dush.min.js](./dist/dush.min.js) (*1.5kb*)
+- [dist/dush.standalone.js](./dist/dush.standalone.js) (*6.5kb*)
+- [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) (*1.7kb*)
+
+
+## In browser
+> Just include [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) in `<script>`
+
+```html
+<script src="https://cdn.rawgit.com/tunnckoCore/dush/master/dist/dush.standalone.min.js"></script>
 ```
 
 
