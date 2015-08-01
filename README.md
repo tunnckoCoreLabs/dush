@@ -27,6 +27,7 @@ npm test
 - [dist/dush.min.js](./dist/dush.min.js) (*1.5kb*)
 - [dist/dush.standalone.js](./dist/dush.standalone.js) (*6.5kb*)
 - [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) (*1.7kb*)
+- [index.js](./index.js) (*1.7kb*)
 
 
 ## In browser
@@ -76,6 +77,17 @@ emitter
   .emit('custom', Math.random())
   .emit('custom', Math.random())
 ```
+
+
+## Related
+- [benz](https://github.com/tunnckocore/benz): Compose your control flow with absolute elegance. Support async/await, callbacks, thunks, generators, promises, observables, child… [more](https://github.com/tunnckocore/benz)
+- [browserify](https://github.com/substack/node-browserify): browser-side require() the node way
+- [dual-emitter](https://github.com/tunnckocore/dual-emitter): :tropical_drink: EventEmitter done right and no dependencies. For nodejs and the browser (>= IE8). Can… [more](https://github.com/tunnckocore/dual-emitter)
+- [j140](https://github.com/tunnckoCore/j140): Javascript template engine in just 140 bytes, for browser and node - by Jed Schmidt
+- [minigrid](https://github.com/henriquea/minigrid): Minimal 2kb zero dependency cascading grid layout
+- [riot](https://muut.com/riotjs/): A React- like, 3.5K user interface library
+- [uglify-js](http://lisperator.net/uglifyjs): JavaScript parser, mangler/compressor and beautifier toolkit
+- [vez](https://github.com/tunnckocore/vez): Middleware composition at new level. Ultimate alternative to `ware`, `plugins`, `koa-compose` and `composition` packages. Allows… [more](https://github.com/tunnckocore/vez)
 
 
 ## Contributing
