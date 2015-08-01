@@ -1,0 +1,70 @@
+{
+  "name": "dush",
+  "version": "0.0.0",
+  "description": ":clap: Minimalist `npm.im/dual-emitter` observer - event handling for the browser (IE8+) and nodejs.",
+  "repository": "tunnckoCore/dush",
+  "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
+  "main": "index.js",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run bundle && npm run bundle-uglify && npm run standalone && npm run standalone-uglify",
+    "bundle": "browserify -do dist/dush.js index.js",
+    "bundle-uglify": "uglifyjs -m -c -o dist/dush.min.js dist/dush.js",
+    "standalone": "browserify -s Dush -do dist/dush.standalone.js index.js",
+    "standalone-uglify": "uglifyjs -m -c -o dist/dush.standalone.min.js dist/dush.standalone.js",
+    "test": "standard && node test.js"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "assertit": "^0.1.0",
+    "browserify": "^11.0.1",
+    "uglify-js": "^2.4.24"
+  },
+  "keywords": [
+    "bind",
+    "browser",
+    "chrome",
+    "chromium",
+    "cross",
+    "cross-browser",
+    "custom",
+    "dom",
+    "dual",
+    "el",
+    "element",
+    "elements",
+    "emit",
+    "emitter",
+    "event",
+    "events",
+    "explorer",
+    "firefox",
+    "ie",
+    "ie8",
+    "internet",
+    "invoke",
+    "micro",
+    "microjs",
+    "min",
+    "mini",
+    "minimal",
+    "minimalist",
+    "mozilla",
+    "node",
+    "nodejs",
+    "observer",
+    "observerable",
+    "off",
+    "on",
+    "once",
+    "one",
+    "onetime",
+    "trigger",
+    "unbind"
+  ],
+  "standard": {
+    "ignore": [
+      "dist/**"
+    ]
+  }
+}
