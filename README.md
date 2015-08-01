@@ -84,7 +84,7 @@ But before doing anything, please read the [CONTRIBUTING.md](./CONTRIBUTING.md) 
 [coveralls-img]: https://img.shields.io/coveralls/tunnckoCore/dush.svg
 
 [david-url]: https://david-dm.org/tunnckoCore/dush
-[david-img]: https://img.shields.io/david/tunnckoCore/dush.svg
+[david-img]: https://img.shields.io/david/dev/tunnckoCore/dush.svg
 
 [standard-url]: https://github.com/feross/standard
 [standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
