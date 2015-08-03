@@ -16,17 +16,19 @@ npm test
 ## Features
 - minimal, yet simple to use - [demo in jsbin](http://jsbin.com/qiqirunoju/1/edit?js,console,output)
 - zero dependencies - just [1.5kb minified](./dist/dush.standalone.min.js)
+- can emit DOM events manually, e.g `dush.emit('mouseover', 123, document.body)`
 - works on every browser, should **even works on IE8**
 - works on the server with just `require('dush')`
-- plays well with [browserify.org](http://browserify.org)
+- plays well with [Browserify](https://browserify.org) and [BrowserifyCDN](https://brcdn.org)
 - have `.on`, `.off`, `.once` and `.emit` methods
+- available on CDNs - [JSDelivr.com](http://www.jsdelivr.com/#!dush), [BrowserifyCDN](https://www.brcdn.org/?module=dush&version=list), [RawGit](https://rawgit.com/) and CDNjs.com
 
 
 ## Use it
 - [dist/dush.min.js](./dist/dush.min.js) (*1.5kb*)
 - [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) (*1.7kb*)
 - [dush on JSDelivr CDN](http://www.jsdelivr.com/#!dush)
-
+- [dush on BrowserifyCDN](https://www.brcdn.org/?module=dush&version=list)
 
 ## Usage
 > For more use-cases see the [tests](./test.js)
