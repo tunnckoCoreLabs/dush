@@ -22,20 +22,10 @@ npm test
 - have `.on`, `.off`, `.once` and `.emit` methods
 
 
-## Use some from `dist/` folder
-- [dist/dush.js](./dist/dush.js) (*6kb*)
+## Use it
 - [dist/dush.min.js](./dist/dush.min.js) (*1.5kb*)
-- [dist/dush.standalone.js](./dist/dush.standalone.js) (*6.5kb*)
 - [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) (*1.7kb*)
-- [index.js](./index.js) (*1.7kb*)
-
-
-## In browser
-> Just include [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) in `<script>`
-
-```html
-<script src="https://cdn.rawgit.com/tunnckoCore/dush/master/dist/dush.standalone.min.js"></script>
-```
+- or [from JSDelivr CDN](http://www.jsdelivr.com/#!dush)
 
 
 ## Usage
@@ -76,6 +66,36 @@ emitter
   .emit('custom', Math.random())
   .emit('custom', Math.random())
   .emit('custom', Math.random())
+```
+
+
+### Dush.mixin
+> You can mixin `Dush` (prototype) into your app/class.
+
+**Example**
+
+```js
+var Dush = require('dush')
+
+function App () {
+  Dush.call(this)
+  this.foo = 'bar'
+}
+
+Dush.mixin(App.prototype)
+
+App.prototype.hello = function () {
+  var self = this
+  this.on('hi', function (hi) {
+    console.log(self.foo, hi)
+  })
+  return this
+}
+
+var app = new App()
+app
+  .hello() //=> 'bar world'
+  .emit('hi', 'world')
 ```
 
 
