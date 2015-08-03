@@ -25,7 +25,7 @@ npm test
 ## Use it
 - [dist/dush.min.js](./dist/dush.min.js) (*1.5kb*)
 - [dist/dush.standalone.min.js](./dist/dush.standalone.min.js) (*1.7kb*)
-- or [from JSDelivr CDN](http://www.jsdelivr.com/#!dush)
+- [dush on JSDelivr CDN](http://www.jsdelivr.com/#!dush)
 
 
 ## Usage
