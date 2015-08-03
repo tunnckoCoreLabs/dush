@@ -10,7 +10,7 @@
     "build": "npm run bundle && npm run bundle-uglify && npm run standalone && npm run standalone-uglify",
     "bundle": "browserify -do dist/dush.js index.js",
     "bundle-uglify": "uglifyjs -m -c -o dist/dush.min.js dist/dush.js",
-    "standalone": "browserify -s Dush -do dist/dush.standalone.js index.js",
+    "standalone": "browserify -s dush -do dist/dush.standalone.js index.js",
     "standalone-uglify": "uglifyjs -m -c -o dist/dush.standalone.min.js dist/dush.standalone.js",
     "test": "standard && node test.js"
   },
@@ -65,6 +65,14 @@
   "standard": {
     "ignore": [
       "dist/**"
+    ]
+  },
+  "autoupdate": {
+    "source": "git",
+    "target": "git://github.com/tunnckoCore/dush.git",
+    "basePath": "dist",
+    "files": [
+      "*.min.js"
     ]
   }
 }
