@@ -72,13 +72,13 @@ function Dush ($) {
     }
     return $
   }
-  $.mixin = function (r, s, c, k, j) {
-    s = s || $
-    c = r.constructor
-    for (k in s) c[k] = s[k]
-    c[p] = Object.create(s[p])
-    for (j in r) c[p][j] = r[j]
-    c.__super__ = p[p]
-    return c
-  }
+}
+Dush.mixin = function (r, s, c, k, j) {
+  s = s || Dush
+  c = r.constructor
+  for (k in s) c[k] = s[k]
+  c[p] = Object.create(s[p])
+  for (j in r) c[p][j] = r[j]
+  c.__super__ = p[p]
+  return c
 }
