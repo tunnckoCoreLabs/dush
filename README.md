@@ -1,6 +1,6 @@
 # [dush][author-www-url] [![npmjs.com][npmjs-img]][npmjs-url] [![The MIT License][license-img]][license-url] 
 
-> :clap: Minimalist [npm.im/dual-emitter][dual-emitter] observer - event handling for the browser (IE8+) and nodejs.
+> :clap: Minimalist 1.5kb event delegation for the browser (IE8+) and nodejs.
 
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][cov-img]][cov-url] [![dependency status][david-img]][david-url]
 
