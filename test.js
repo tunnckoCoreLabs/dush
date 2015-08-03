@@ -97,4 +97,27 @@ test('dush:', function () {
     test.equal(count, 3)
     done()
   })
+  test('should mixin correctly', function (done) {
+    function App () {
+      Dush.call(this)
+      this.foo = 'bar'
+    }
+
+    Dush.mixin(App.prototype)
+
+    App.prototype.hello = function () {
+      var self = this
+      this.on('hi', function (hi) {
+        test.equal(self.foo, 'bar')
+        test.equal(hi, 'world')
+        done()
+      })
+      return this
+    }
+
+    var app = new App()
+    app
+      .hello()
+      .emit('hi', 'world')
+  })
 })
