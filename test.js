@@ -120,4 +120,26 @@ test('dush:', function () {
       .hello()
       .emit('hi', 'world')
   })
+  test('should be able to extend prototype like jQuery', function (done) {
+    Dush.prototype.addClass = function addClass (el, name) {
+      if (el.classList) {
+        el.classList.add(name)
+      } else {
+        el.className += ' ' + name
+      }
+      return el
+    }
+
+    var dush = Dush()
+    dush
+      .on('foo', function (hi) {
+        test.equal(typeof this.off, 'function')
+        test.equal(typeof this.once, 'function')
+        test.equal(typeof this.emit, 'function')
+        test.equal(typeof this.addClass, 'function')
+        test.equal(hi, 'hello world')
+        done()
+      })
+      .emit('foo', 'hello world')
+  })
 })
