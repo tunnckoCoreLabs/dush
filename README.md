@@ -2,6 +2,8 @@
 
 > :clap: Minimalist 1.5kb event delegation for the browser (IE8+) and nodejs.
 
+If you need documentation, see at [dual-emitter](https://github.com/tunnckoCore/dual-emitter), because `dush` is just more minimal approach, without comments. 
+
 [![code climate][codeclimate-img]][codeclimate-url] [![standard code style][standard-img]][standard-url] [![travis build status][travis-img]][travis-url] [![coverage status][cov-img]][cov-url] [![dependency status][david-img]][david-url]
 
 *PRs welcome for client-side tests*
@@ -106,6 +108,7 @@ app
 - [browserify](https://github.com/substack/node-browserify): browser-side require() the node way
 - [dual-emitter](https://github.com/tunnckocore/dual-emitter): :tropical_drink: EventEmitter done right and no dependencies. For nodejs and the browser (>= IE8). Can… [more](https://github.com/tunnckocore/dual-emitter)
 - [j140](https://github.com/tunnckoCore/j140): Javascript template engine in just 140 bytes, for browser and node - by Jed Schmidt
+- [octet](https://github.com/tunnckocore/octet): 1kb template engine for the browser and nodejs. Support helpers, partials and more.
 - [minigrid](https://github.com/henriquea/minigrid): Minimal 2kb zero dependency cascading grid layout
 - [riot](https://muut.com/riotjs/): A React- like, 3.5K user interface library
 - [uglify-js](http://lisperator.net/uglifyjs): JavaScript parser, mangler/compressor and beautifier toolkit
