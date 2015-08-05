@@ -1,5 +1,9 @@
 
 
+## 1.2.0 - 2015-08-05
+- Release v1.2.0 / npm@v1.2.0
+- forgot to run `npm run build` to bundle and minify
+
 ## 1.1.0 - 2015-08-05
 - Release v1.1.0 / npm@v1.1.0
 - update readme
