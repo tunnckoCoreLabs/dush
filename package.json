@@ -1,6 +1,6 @@
 {
   "name": "dush",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Minimalist 1.5kb event delegation for the browser (IE8+) and nodejs.",
   "repository": "tunnckoCore/dush",
   "author": "Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)",
