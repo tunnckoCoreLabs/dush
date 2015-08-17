@@ -1,5 +1,11 @@
 
 
+## 1.3.0 - 2015-08-17
+- Release v1.3.0 / npm@v1.3.0
+- renamce LICENSE.md
+- add `files` field in package.json
+- fix that it listens outside of given element
+
 ## 1.2.0 - 2015-08-05
 - Release v1.2.0 / npm@v1.2.0
 - forgot to run `npm run build` to bundle and minify
