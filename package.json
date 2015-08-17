@@ -62,6 +62,9 @@
     "trigger",
     "unbind"
   ],
+  "files": [
+    "index.js"
+  ],
   "standard": {
     "ignore": [
       "dist/**"
