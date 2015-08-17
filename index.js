@@ -34,7 +34,7 @@ function Dush ($) {
     if (e && $._d(e)) {
       f[o] = e[o]
       i = e['add' + l]
-      i ? i(n, f, 0) : e.attachEvent('on' + n, f)
+      i ? e['add' + l](n, f, 0) : e.attachEvent('on' + n, f)
     }
     return $
   }
@@ -44,7 +44,7 @@ function Dush ($) {
 
     if (e && $._d(e)) {
       i = e['remove' + l]
-      i ? i(n, f, 0) : e.detachEvent('on' + n, f)
+      i ? e['remove' + l](n, f, 0) : e.detachEvent('on' + n, f)
     }
     return $
   }
