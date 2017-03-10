@@ -29,7 +29,7 @@
  * @api public
  */
 
-function dush () {
+export default function dush () {
   const all = Object.create(null)
   const app = {
     /**
@@ -203,5 +203,3 @@ function dush () {
 
   return app
 }
-
-export default dush
