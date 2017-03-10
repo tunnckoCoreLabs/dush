@@ -55,6 +55,13 @@
       "dist/**"
     ]
   },
+  "nyc": {
+    "check-coverage": true,
+    "statements": 100,
+    "functions": 100,
+    "branches": 100,
+    "lines": 100
+  },
   "verb": {
     "run": true,
     "toc": {
@@ -70,31 +77,34 @@
       "list": [
         "always-done",
         "minibase",
-        "try-catch-core"
+        "try-catch-core",
+        "mitt",
+        "unfetch",
+        "mich-h",
+        "randomorg-js",
+        "smitty",
+        "dual-emitter"
       ],
-      "highlight": "always-done"
-    },
-    "lint": {
-      "reflinks": true
+      "highlight": "mitt"
     },
     "reflinks": [
       "always-done",
       "async-done",
       "base",
+      "browserify",
       "charlike",
       "commitizen",
       "dezalgo",
+      "mitt",
       "once",
       "standard-version",
       "verb",
-      "verb-generate-readme"
-    ]
-  },
-  "nyc": {
-    "check-coverage": true,
-    "statements": 100,
-    "functions": 100,
-    "branches": 100,
-    "lines": 100
+      "verb-generate-readme",
+      "hyperscript",
+      "webpack"
+    ],
+    "lint": {
+      "reflinks": true
+    }
   }
 }
