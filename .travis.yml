@@ -1,30 +1,12 @@
-language: "node_js"
 sudo: false
+language: node_js
 
 node_js:
-  - "0.10"
-  - "0.12"
-  - "1"
-  - "2"
+  - "node"
+  - "6"
+  - "4"
 
 notifications:
-  email:
-    on_success: never
-    on_failure: never
+  email: false
 
-before_script:
-  - npm install standard
-  - standard
-
-script:
-  - npm install istanbul-harmony
-  - node --harmony node_modules/.bin/istanbul cover test.js
-
-after_success:
-  - npm install coveralls
-  - cat coverage/lcov.info | coveralls
-  - mv coverage/lcov.info .
-
-matrix:
-  allow_failures:
-    - node_js: "0.10"
+after_success: bash <(curl -s https://codecov.io/bash)

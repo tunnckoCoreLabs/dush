@@ -1,7 +1,7 @@
 /*!
  * dush <https://github.com/tunnckoCore/dush>
  *
- * Copyright (c) 2015 Charlike Mike Reagent <@tunnckoCore> (http://www.tunnckocore.tk)
+ * Copyright (c) Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)
  * Released under the MIT license.
  */
 
@@ -9,137 +9,152 @@
 
 'use strict'
 
-var test = require('assertit')
-var Dush = require('./index')
+const test = require('mukla')
+const dush = require('./dist/dush.common')
+const app = dush()
 
-test('dush:', function () {
-  test('should listen `.on` custom event `.emit` few times', function (done) {
-    var emitter = new Dush()
-    var count = 0
-    var results = []
+test('should return an instance with methods and `.all` object', (done) => {
+  test.strictEqual(typeof app.all, 'object')
+  test.strictEqual(typeof app.on, 'function')
+  test.strictEqual(typeof app.off, 'function')
+  test.strictEqual(typeof app.once, 'function')
+  test.strictEqual(typeof app.emit, 'function')
+  done()
+})
 
-    emitter
-      .on('custom', function onCustom (a, b) {
-        count++
-        results.push([a, b])
-      })
-      .emit('custom', 'foo', 123)
-      .emit('custom', 'bar')
-      .emit('custom')
+test('should instace has .all object that contains all handlers', function (done) {
+  const fn = () => {}
 
-    test.equal(count, 3)
-    test.deepEqual(results[0], ['foo', 123])
-    test.deepEqual(results[1], ['bar', undefined])
-    test.deepEqual(results[2], [undefined, undefined])
-    done()
+  app.on('aaa', fn)
+  app.on('aaa', fn)
+  app.on('bbb', fn)
+  app.on('ccc', fn)
+  app.on('ccc', fn)
+  app.on('ccc', fn)
+
+  test.deepStrictEqual(Object.keys(app.all), ['aaa', 'bbb', 'ccc'])
+  test.strictEqual(app.all.aaa.length, 2)
+  test.strictEqual(app.all.bbb.length, 1)
+  test.strictEqual(app.all.ccc.length, 3)
+  app.emit('zzz')
+  done()
+})
+
+test('should register handlers for any type of string', function (done) {
+  const app = dush()
+  app.on('constructor', (a) => {
+    test.ok(a === 2)
   })
-  test('should listen `.once` custom event `.emit` few times', function (done) {
-    var emitter = new Dush()
-    var count = 0
+  app.emit('constructor', 2)
+  done()
+})
 
-    emitter
-      .once('custom', function () {
-        count++
-      })
-      .emit('custom')
-      .emit('custom')
-      .emit('custom')
-
-    test.equal(count, 1)
-    done()
+test('should .emit with multiple params (maximum 3)', function (done) {
+  const emitter = dush()
+  emitter.on('foo', (a, b) => {
+    test.strictEqual(a, 'aaa')
+    test.strictEqual(b, 'bbb')
   })
-  test('should `.off` event listener after second `.emit`', function (done) {
-    var emitter = new Dush()
-    var count = 0
 
-    function handler () {
-      if (count === 2) {
-        emitter.off('custom', handler)
-        return
-      }
-      count++
-    }
+  emitter.emit('foo', 'aaa', 'bbb')
+  done()
+})
 
-    emitter
-      .on('custom', handler)
-      .emit('custom')
-      .emit('custom')
-      .emit('custom')
-      .emit('custom')
-
-    test.equal(count, 2)
-    done()
+test('should handler should not get 4th param', function (done) {
+  const app = dush()
+  app.once('quxie', (a, b, c, d) => {
+    test.strictEqual(a, 1)
+    test.strictEqual(b, 2)
+    test.strictEqual(c, 3)
+    test.strictEqual(d, undefined)
   })
-  test('should `this` at `.on/.once` be Dush when not DOM usage', function (done) {
-    var emitter = new Dush()
+  app.emit('quxie', 1, 2, 3, 4)
+  done()
+})
 
-    emitter
-      .on('custom', function () {
-        test.equal(typeof this.once, 'function')
-        done()
-      })
-      .emit('custom')
+test('should .on register multiple handlers', function (done) {
+  let called = 0
+  let fn = (a) => {
+    called++
+    test.strictEqual(a, 123)
+  }
+
+  app.on('foo', fn)
+  app.on('foo', fn)
+  app.emit('foo', 123)
+
+  test.strictEqual(called, 2)
+  done()
+})
+
+test('should handlers added with .once be called one time only', function (done) {
+  let called = 0
+  app.once('bar', () => {
+    called++
   })
-  test('should support multiple `.on` event', function (done) {
-    var emitter = new Dush()
-    var count = 0
 
-    function handler () {
-      count++
-    }
+  app.emit('bar')
+  app.emit('bar')
+  app.emit('bar')
 
-    emitter
-      .on('custom', handler)
-      .on('custom', handler)
-      .on('custom', handler)
-      .emit('custom')
+  test.strictEqual(called, 1)
+  done()
+})
 
-    test.equal(count, 3)
-    done()
+test('should .off("foo", fn) remove the handler', function (done) {
+  let called = 0
+  let second = 0
+  const fn = () => {
+    called++
+  }
+
+  app.on('qux', fn)
+  app.on('qux', () => {
+    second = 1
   })
-  test('should mixin correctly', function (done) {
-    function App () {
-      Dush.call(this)
-      this.foo = 'bar'
-    }
+  app.off('qux', fn)
+  app.emit('qux')
 
-    Dush.mixin(App.prototype)
+  test.strictEqual(called, 0)
+  test.strictEqual(second, 1)
+  test.strictEqual(app.all.qux.length, 1)
+  done()
+})
 
-    App.prototype.hello = function () {
-      var self = this
-      this.on('hi', function (hi) {
-        test.equal(self.foo, 'bar')
-        test.equal(hi, 'world')
-        done()
-      })
-      return this
-    }
+test('should .off("foo") remove all "foo" handlers', function (done) {
+  app
+    .on('zzz', () => {})
+    .on('zzz', () => {})
+    .off('zzz')
 
-    var app = new App()
-    app
-      .hello()
-      .emit('hi', 'world')
+  test.strictEqual(app.all.zzz.length, 0)
+  done()
+})
+
+test('should all methods be chainable', function (done) {
+  let called = 0
+  const foo = app.on('foo', () => {})
+  test.ok(foo.once)
+
+  const bar = foo.once('bar', () => {
+    called++
   })
-  test('should be able to extend prototype like jQuery', function (done) {
-    Dush.prototype.addClass = function addClass (el, name) {
-      if (el.classList) {
-        el.classList.add(name)
-      } else {
-        el.className += ' ' + name
-      }
-      return el
-    }
+  test.ok(bar.emit)
 
-    var dush = Dush()
-    dush
-      .on('foo', function (hi) {
-        test.equal(typeof this.off, 'function')
-        test.equal(typeof this.once, 'function')
-        test.equal(typeof this.emit, 'function')
-        test.equal(typeof this.addClass, 'function')
-        test.equal(hi, 'hello world')
-        done()
-      })
-      .emit('foo', 'hello world')
+  const qux = bar.emit('bar')
+  test.ok(qux.off)
+
+  qux.off('bar').emit('bar')
+  test.strictEqual(called, 1)
+  done()
+})
+
+test('should have wildcard event', function (done) {
+  const app = dush()
+  app.on('*', (name, nume) => {
+    test.strictEqual(name, 'haha')
+    test.strictEqual(nume, 444444)
   })
+  app.emit('haha', 444444)
+  done()
 })
