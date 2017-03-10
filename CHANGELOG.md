@@ -1,3 +1,28 @@
+# Change Log
+
+All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+<a name="2.0.0"></a>
+# [2.0.0](https://github.com/tunnckocore/dush/compare/v1.3.0...v2.0.0) (2017-03-10)
+
+
+### Bug Fixes
+
+* **index:** tweak ([25668b6](https://github.com/tunnckocore/dush/commit/25668b6))
+
+
+### Code Refactoring
+
+* **update:** make it really minimal - 340bytes; boilerplate stuff ([a97713e](https://github.com/tunnckocore/dush/commit/a97713e))
+
+
+### BREAKING CHANGES
+
+* update: Not based on DOM, so works on Node too; Has .on, .off, .once and .emit methods;
+support chaining and emitting multiple params (maximum 3)
+
+
+
 
 
 ## 1.3.0 - 2015-08-17
