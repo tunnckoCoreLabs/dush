@@ -10,6 +10,7 @@
 /**
  * > A constructor function that returns an object
  * with a few methods.
+ *
  * See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
  *
  * **Example**
@@ -38,6 +39,7 @@ function dush () {
      * and their listeners. A key/value store, where 1) value
      * is an array of event listeners for the key and 2) key
      * is the name of the event.
+     *
      * See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
      *
      * **Example**
@@ -62,6 +64,7 @@ function dush () {
 
     /**
      * > Add `handler` for `name` event.
+     *
      * See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
      *
      * **Example**
@@ -97,6 +100,7 @@ function dush () {
     /**
      * > Add `handler` for `name` event that
      * will be called only one time.
+     *
      * See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
      *
      * **Example**
@@ -137,6 +141,7 @@ function dush () {
     /**
      * > Remove `handler` for `name` event. If `handler` not
      * passed will remove **all** listeners for that `name` event.
+     *
      * See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
      *
      * **Example**
@@ -183,6 +188,7 @@ function dush () {
      * If present, `'*'` listeners are invoked too with `(type, ...rest)` signature,
      * where the `type` argument is a string representing the name of the
      * called event; and all of the rest arguments.
+     *
      * See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
      *
      * **Example**

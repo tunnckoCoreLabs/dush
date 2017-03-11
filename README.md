@@ -91,8 +91,10 @@ Old school in browsers, available at global scope
 
 ## API
 
-### [dush()](src/index.js#L33)
-> A constructor function that returns an object with a few methods. See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
+### [dush()](src/index.js#L34)
+> A constructor function that returns an object with a few methods.
+
+See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
 
 * `returns` **{Object}**: methods  
 
@@ -109,8 +111,10 @@ console.log(emitter.off) // => Function
 console.log(emitter.emit) // => Function
 ```
 
-### [.all](src/index.js#L61)
-> An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event. See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
+### [.all](src/index.js#L63)
+> An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event.
+
+See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
 
 **Example**
 
@@ -125,8 +129,10 @@ console.log(emitter.all)
 // => { foo: [Function, Function], bar: [Functon] }
 ```
 
-### [.on](src/index.js#L90)
-> Add `handler` for `name` event. See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
+### [.on](src/index.js#L93)
+> Add `handler` for `name` event.
+
+See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
 
 **Params**
 
@@ -150,8 +156,10 @@ emitter
 emitter.emit('hi', 'world')
 ```
 
-### [.once](src/index.js#L128)
-> Add `handler` for `name` event that will be called only one time. See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
+### [.once](src/index.js#L132)
+> Add `handler` for `name` event that will be called only one time.
+
+See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
 
 **Params**
 
@@ -178,8 +186,10 @@ emitter
 console.log(called) // => 1
 ```
 
-### [.off](src/index.js#L171)
-> Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event. See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
+### [.off](src/index.js#L176)
+> Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
+
+See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
 
 **Params**
 
@@ -209,8 +219,10 @@ emitter.off('foo')
 emitter.emit('foo')
 ```
 
-### [.emit](src/index.js#L213)
-> Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments. See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
+### [.emit](src/index.js#L219)
+> Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments.
+
+See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
 
 **Params**
 
