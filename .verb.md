@@ -24,6 +24,7 @@ for few things and that's why `dush` exists.
 - **Useful:** A wildcard `'*'` event type listens to all events.
 - **Friendly:** Plays well with [browserify][], [webpack][] and browser users.
 - **Bundled:** Available as ES6 Module, CommonJS and UMD.
+- **Meaning:** [Hear it](https://translate.google.com/?hl=bg&tab=wT#en/bg/dush). It just means `shower` in Bulgarian.
 - **Clean:** Does not mess with DOM or anything.
 
 ## Table of Contents
