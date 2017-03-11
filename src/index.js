@@ -10,6 +10,7 @@
 /**
  * > A constructor function that returns an object
  * with a few methods.
+ * See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
  *
  * **Example**
  *
@@ -24,7 +25,7 @@
  * console.log(emitter.emit) // => Function
  * ```
  *
- * @name   dush
+ * @name   dush()
  * @return {Object} methods
  * @api public
  */
@@ -37,11 +38,11 @@ export default function dush () {
      * and their listeners. A key/value store, where 1) value
      * is an array of event listeners for the key and 2) key
      * is the name of the event.
+     * See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
      *
      * **Example**
      *
      * ```js
-     * const dush = require('dush')
      * const emitter = dush()
      *
      * emitter.on('foo', () => {})
@@ -51,21 +52,29 @@ export default function dush () {
      * console.log(emitter.all)
      * // => { foo: [Function, Function], bar: [Functon] }
      * ```
+     *
+     * @name  .all
+     * @type {Object} `all` a key/value store of all events and their listeners
+     * @api public
      */
+
     all,
 
     /**
      * > Add `handler` for `name` event.
+     * See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
      *
      * **Example**
      *
      * ```js
+     * const emitter = dush()
+     *
      * emitter
      *   .on('hi', (place) => {
-     *     console.log('hello', place) // => 'hello world'
+     *     console.log(`hello ${place}!`) // => 'hello world!'
      *   })
      *   .on('hi', (place) => {
-     *     console.log('hello', place) // => 'hello world'
+     *     console.log(`hi ${place}, yeah!`) // => 'hi world, yeah!'
      *   })
      *
      * emitter.emit('hi', 'world')
@@ -87,12 +96,14 @@ export default function dush () {
 
     /**
      * > Add `handler` for `name` event that
-     * will be called only one time
+     * will be called only one time.
+     * See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
      *
      * **Example**
      *
      * ```js
-     * const called = 0
+     * const emitter = dush()
+     * let called = 0
      *
      * emitter.once('foo', () => {
      *   console.log('called only once')
@@ -100,9 +111,9 @@ export default function dush () {
      * })
      *
      * emitter
-     *   .emit('foo')
-     *   .emit('foo')
-     *   .emit('foo')
+     *   .emit('foo', 111)
+     *   .emit('foo', 222)
+     *   .emit('foo', 333)
      *
      * console.log(called) // => 1
      * ```
@@ -126,21 +137,24 @@ export default function dush () {
     /**
      * > Remove `handler` for `name` event. If `handler` not
      * passed will remove **all** listeners for that `name` event.
+     * See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
      *
      * **Example**
      *
      * ```js
+     * const emitter = dush()
+     *
      * const handler = () => {
      *   console.log('not called')
      * }
      *
-     * emitter
-     *   .on('foo', handler)
-     *   .on('foo', (abc) => {
-     *     console.log('called', abc) // => 'called 123'
-     *   })
-     *   .off('foo', handler)
-     *   .emit('foo', 123)
+     * emitter.on('foo', handler)
+     * emitter.off('foo', handler)
+     *
+     * emitter.on('foo', (abc) => {
+     *   console.log('called', abc) // => 'called 123'
+     * })
+     * emitter.emit('foo', 123)
      *
      * // or removing all listeners of `foo`
      * emitter.off('foo')
@@ -168,18 +182,21 @@ export default function dush () {
      * > Invoke all handlers for given `name` event.
      * If present, `'*'` listeners are invoked too with `(type, ...rest)` signature,
      * where the `type` argument is a string representing the name of the
-     * called event; and all of the rest arguments
+     * called event; and all of the rest arguments.
+     * See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
      *
      * **Example**
      *
      * ```js
-     * emitter.on('*', (name, a, b, c) => {
-     *   console.log('name is', name)
-     *   console.log('rest args', a, b, c)
-     * })
+     * const emitter = dush()
      *
      * emitter.on('foo', (a, b, c) => {
-     *   console.log(a, b, c) // => 1 2  3
+     *   console.log(`${a}, ${b}, ${c}`) // => 1, 2, 3
+     * })
+     *
+     * emitter.on('*', (name, a, b, c) => {
+     *   console.log(`name is: ${name}`)
+     *   console.log(`rest args are: ${a}, ${b}, ${c}`)
      * })
      *
      * emitter.emit('foo', 1, 2, 3)

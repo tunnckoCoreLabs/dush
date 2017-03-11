@@ -23,13 +23,15 @@ for few things and that's why `dush` exists.
 - **Chaining:** Support all methods to be chainable.
 - **Useful:** A wildcard `'*'` event type listens to all events.
 - **Friendly:** Plays well with [browserify][], [webpack][] and browser users.
-- **Bundled:** Available as ES6 Module, CommonJS, UMD.
+- **Bundled:** Available as ES6 Module, CommonJS and UMD.
 - **Clean:** Does not mess with DOM or anything.
 
 ## Table of Contents
 - [Install](#install)
+- [Usage](#usage)
 - [API](#api)
-  * [dush](#dush)
+  * [dush()](#dush)
+  * [.all](#all)
   * [.on](#on)
   * [.once](#once)
   * [.off](#off)
@@ -56,10 +58,41 @@ or install using [yarn](https://yarnpkg.com)
 $ yarn add dush
 ```
 
+or using [unpkg](https://unpkg.com) CDN
+
+```html
+<script src="https://unpkg.com/dush/dist/dush.umd.js"></script>
+```
+
+> **Note:** Don't use Unpkg's short-hand endpoint `https://unpkg.com/dush`, 
+since it points to CommonJS bundle.
+
+## Usage
+
+Modern `import`ing, using [rollup][] or [webpack][] bundler
+
+```js
+import dush from 'dush'
+```
+
+Node.js `require` as CommonJS module
+
+```js
+var dush = require('dush')
+```
+
+Old school in browsers, available at global scope
+
+```html
+<script>
+  var emitter = dush()
+</script>
+```
+
 ## API
 
-### [dush](src/index.js#L32)
-> A constructor function that returns an object with a few methods.
+### [dush()](src/index.js#L33)
+> A constructor function that returns an object with a few methods. See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
 
 * `returns` **{Object}**: methods  
 
@@ -76,8 +109,24 @@ console.log(emitter.off) // => Function
 console.log(emitter.emit) // => Function
 ```
 
-### [.on](src/index.js#L81)
-> Add `handler` for `name` event.
+### [.all](src/index.js#L61)
+> An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event. See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
+
+**Example**
+
+```js
+const emitter = dush()
+
+emitter.on('foo', () => {})
+emitter.on('foo', () => {})
+emitter.on('bar', () => {})
+
+console.log(emitter.all)
+// => { foo: [Function, Function], bar: [Functon] }
+```
+
+### [.on](src/index.js#L90)
+> Add `handler` for `name` event. See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
 
 **Params**
 
@@ -88,19 +137,21 @@ console.log(emitter.emit) // => Function
 **Example**
 
 ```js
+const emitter = dush()
+
 emitter
   .on('hi', (place) => {
-    console.log('hello', place) // => 'hello world'
+    console.log(`hello ${place}!`) // => 'hello world!'
   })
   .on('hi', (place) => {
-    console.log('hello', place) // => 'hello world'
+    console.log(`hi ${place}, yeah!`) // => 'hi world, yeah!'
   })
 
 emitter.emit('hi', 'world')
 ```
 
-### [.once](src/index.js#L117)
-> Add `handler` for `name` event that will be called only one time
+### [.once](src/index.js#L128)
+> Add `handler` for `name` event that will be called only one time. See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
 
 **Params**
 
@@ -111,7 +162,8 @@ emitter.emit('hi', 'world')
 **Example**
 
 ```js
-const called = 0
+const emitter = dush()
+let called = 0
 
 emitter.once('foo', () => {
   console.log('called only once')
@@ -119,15 +171,15 @@ emitter.once('foo', () => {
 })
 
 emitter
-  .emit('foo')
-  .emit('foo')
-  .emit('foo')
+  .emit('foo', 111)
+  .emit('foo', 222)
+  .emit('foo', 333)
 
 console.log(called) // => 1
 ```
 
-### [.off](src/index.js#L157)
-> Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
+### [.off](src/index.js#L171)
+> Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event. See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
 
 **Params**
 
@@ -138,25 +190,27 @@ console.log(called) // => 1
 **Example**
 
 ```js
+const emitter = dush()
+
 const handler = () => {
   console.log('not called')
 }
 
-emitter
-  .on('foo', handler)
-  .on('foo', (abc) => {
-    console.log('called', abc) // => 'called 123'
-  })
-  .off('foo', handler)
-  .emit('foo', 123)
+emitter.on('foo', handler)
+emitter.off('foo', handler)
+
+emitter.on('foo', (abc) => {
+  console.log('called', abc) // => 'called 123'
+})
+emitter.emit('foo', 123)
 
 // or removing all listeners of `foo`
 emitter.off('foo')
 emitter.emit('foo')
 ```
 
-### [.emit](src/index.js#L196)
-> Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments
+### [.emit](src/index.js#L213)
+> Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments. See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
 
 **Params**
 
@@ -167,13 +221,15 @@ emitter.emit('foo')
 **Example**
 
 ```js
-emitter.on('*', (name, a, b, c) => {
-  console.log('name is', name)
-  console.log('rest args', a, b, c)
-})
+const emitter = dush()
 
 emitter.on('foo', (a, b, c) => {
-  console.log(a, b, c) // => 1 2  3
+  console.log(`${a}, ${b}, ${c}`) // => 1, 2, 3
+})
+
+emitter.on('*', (name, a, b, c) => {
+  console.log(`name is: ${name}`)
+  console.log(`rest args are: ${a}, ${b}, ${c}`)
 })
 
 emitter.emit('foo', 1, 2, 3)
@@ -278,3 +334,4 @@ _Project scaffolded using [charlike][] cli._
 [paypalme-url]: https://www.paypal.me/tunnckoCore
 [paypalme-img]: https://img.shields.io/badge/paypal-donate-brightgreen.svg
 
+[rollup]: https://github.com/rollup/rollup

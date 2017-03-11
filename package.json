@@ -44,7 +44,31 @@
   "files": [
     "dist/"
   ],
-  "keywords": [],
+  "keywords": [
+    "browser",
+    "browserify",
+    "cjs",
+    "client",
+    "commonjs",
+    "compatible",
+    "emit",
+    "emitter",
+    "event",
+    "event-emitter",
+    "events",
+    "functional",
+    "lightweight",
+    "micro",
+    "microscopic",
+    "mini",
+    "minimal",
+    "nodejs",
+    "pubsub",
+    "small",
+    "subscribe",
+    "tiny",
+    "webpack"
+  ],
   "config": {
     "commitizen": {
       "path": "./node_modules/cz-conventional-changelog"
