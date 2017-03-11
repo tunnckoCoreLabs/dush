@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.0.1"></a>
+## [2.0.1](https://github.com/tunnckocore/dush/compare/v2.0.0...v2.0.1) (2017-03-11)
+
+
+### Bug Fixes
+
+* **docs:** update api examples and provide JSBin examples ([d631a35](https://github.com/tunnckocore/dush/commit/d631a35))
+
+
+
 <a name="2.0.0"></a>
 # [2.0.0](https://github.com/tunnckocore/dush/compare/v1.3.0...v2.0.0) (2017-03-10)
 
