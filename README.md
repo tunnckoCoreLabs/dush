@@ -257,7 +257,7 @@ See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
 **Params**
 
 * `name` **{String}**: The name of the event to invoke    
-* `args` **{any}**: Any number of arguments of any type of value, passed to each listener    
+* `args` **{any}**: Maximum 3 arguments of any type of value, passed to each listener    
 * `returns` **{Object}**: The `dush` instance for chaining  
 
 **Example**

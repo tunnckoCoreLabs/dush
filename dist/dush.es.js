@@ -242,14 +242,16 @@ function dush () {
      *
      * @name   .emit
      * @param  {String} `name` The name of the event to invoke
-     * @param  {any} `args` Any number of arguments of any type of value, passed to each listener
+     * @param  {any} `args` Maximum 3 arguments of any type of value, passed to each listener
      * @return {Object} The `dush` instance for chaining
      * @api public
      */
 
     emit: function emit (name, a, b, c) {
-      (all[name] || []).map(function (handler) { handler(a, b, c); });
-      (all['*'] || []).map(function (handler) { handler(name, a, b, c); });
+      if (name !== '*') {
+        (all[name] || []).map(function (handler) { handler(a, b, c); });
+        (all['*'] || []).map(function (handler) { handler(name, a, b, c); });
+      }
 
       return app
     }

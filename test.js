@@ -179,3 +179,24 @@ test('should return app if .use(plugin) dont', function (done) {
   test.strictEqual(app.qux, 'zzz')
   done()
 })
+
+test('should not allow emitting the wildcard (issue#5)', function (done) {
+  var emitter = dush()
+
+  emitter.on('*', function (name, a, b, c) {
+    test.strictEqual(name, 'foo')
+    test.strictEqual(a, 1)
+    test.strictEqual(b, 2)
+    test.strictEqual(c, 3)
+  })
+  emitter.on('foo', function (a, b, c) {
+    test.strictEqual(a, 1)
+    test.strictEqual(b, 2)
+    test.strictEqual(c, 3)
+  })
+
+  emitter.emit('*', 4, 5, 6)
+  emitter.emit('foo', 1, 2, 3)
+  emitter.emit('*', 555)
+  done()
+})
