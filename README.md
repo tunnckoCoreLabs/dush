@@ -1,6 +1,6 @@
 # dush [![NPM version](https://img.shields.io/npm/v/dush.svg?style=flat)](https://www.npmjs.com/package/dush) [![mit license][license-img]][license-url] [![NPM monthly downloads](https://img.shields.io/npm/dm/dush.svg?style=flat)](https://npmjs.org/package/dush) [![npm total downloads][downloads-img]][downloads-url]
 
-> Microscopic & functional event emitter
+> Microscopic & functional event emitter in ~260 bytes, extensible through plugins.
 
 [![code climate][codeclimate-img]][codeclimate-url] 
 [![code style][standard-img]][standard-url] 
