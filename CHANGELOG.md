@@ -2,6 +2,26 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.0"></a>
+# [2.1.0](https://github.com/tunnckocore/dush/compare/v2.0.2...v2.1.0) (2017-03-12)
+
+
+### Bug Fixes
+
+* **docs:** fix docs for on/off/once methods ([a21d6b5](https://github.com/tunnckocore/dush/commit/a21d6b5)), closes [#4](https://github.com/tunnckocore/dush/issues/4)
+* **package:** update description ([0175302](https://github.com/tunnckocore/dush/commit/0175302))
+* **readme:** typo ([dc6dd4a](https://github.com/tunnckocore/dush/commit/dc6dd4a))
+* **readme:** update highlights section ([a1b2fd8](https://github.com/tunnckocore/dush/commit/a1b2fd8))
+* **support:** make it work on 0.10 and 0.12 ([484f3a0](https://github.com/tunnckocore/dush/commit/484f3a0))
+* **wildcard:** should not allow emitting the wildcard ([8bdbe13](https://github.com/tunnckocore/dush/commit/8bdbe13)), closes [#5](https://github.com/tunnckocore/dush/issues/5)
+
+
+### Features
+
+* **plugins:** introduce plugins architecture ([e9ac70b](https://github.com/tunnckocore/dush/commit/e9ac70b)), closes [#3](https://github.com/tunnckocore/dush/issues/3)
+
+
+
 <a name="2.0.2"></a>
 ## [2.0.2](https://github.com/tunnckocore/dush/compare/v2.0.1...v2.0.2) (2017-03-11)
 
