@@ -14,11 +14,12 @@ You might also be interested in [mitt][] - a 200 bytes event emitter. It has str
 to stay exactly below 200b with no compromises, so has lack of support
 for few things and that's why `dush` exists.
 
-## Highlights
+## Highlights :sparkles:
 
 - **Microscopic:** Around ~350 bytes gzip + minify, including the UMD wrapper.
 - **Functional:** Methods don't rely on `this` context.
-- **Extensible:** Through simple plugins, for more customizations and wrappers.
+- **Modern:** Work on latest JavaScript versions, but on Node.js 0.10 too.
+- **Extensible:** Through simple plugins, for more customizations.
 - **Compatibility:** Almost like Node's EventEmitter.
 - **Compliant:** Can `.emit` events with multiple params.
 - **Chaining:** Support all methods to be chainable.
