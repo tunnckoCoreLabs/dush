@@ -33,6 +33,7 @@ for few things and that's why `dush` exists.
 - [API](#api)
   * [dush()](#dush)
   * [.all](#all)
+  * [.use](#use)
   * [.on](#on)
   * [.once](#once)
   * [.off](#off)
@@ -130,7 +131,33 @@ console.log(emitter.all)
 // => { foo: [Function, Function], bar: [Functon] }
 ```
 
-### [.on](src/index.js#L93)
+### [.use](src/index.js#L93)
+> Invokes `plugin` function immediately, which is passed with `app` instance. You can use it for adding more methods or properties to the instance. Useful if you want to make dush to work with DOM for example.
+
+**Params**
+
+* `plugin` **{Function}**: A function passed with `(app)` signature    
+* `returns` **{Object}**: The `dush` instance for chaining  
+
+**Example**
+
+```js
+const app = dush()
+
+app.on('hi', (str) => {
+  console.log(str) // => 'Hello World!!'
+})
+
+app.use((app) => {
+  app.foo = 'bar'
+  app.hello = (place) => app.emit('hi', `Hello ${place}!!`)
+})
+
+console.log(app.foo) // => 'bar'
+app.hello('World')
+```
+
+### [.on](src/index.js#L126)
 > Add `handler` for `name` event.
 
 See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
@@ -157,7 +184,7 @@ emitter
 emitter.emit('hi', 'world')
 ```
 
-### [.once](src/index.js#L132)
+### [.once](src/index.js#L165)
 > Add `handler` for `name` event that will be called only one time.
 
 See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
@@ -187,7 +214,7 @@ emitter
 console.log(called) // => 1
 ```
 
-### [.off](src/index.js#L176)
+### [.off](src/index.js#L209)
 > Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
 
 See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
@@ -220,7 +247,7 @@ emitter.off('foo')
 emitter.emit('foo')
 ```
 
-### [.emit](src/index.js#L219)
+### [.emit](src/index.js#L252)
 > Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments.
 
 See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).

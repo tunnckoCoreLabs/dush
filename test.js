@@ -15,6 +15,7 @@ const app = dush()
 
 test('should return an instance with methods and `.all` object', (done) => {
   test.strictEqual(typeof app.all, 'object')
+  test.strictEqual(typeof app.use, 'function')
   test.strictEqual(typeof app.on, 'function')
   test.strictEqual(typeof app.off, 'function')
   test.strictEqual(typeof app.once, 'function')
@@ -156,5 +157,25 @@ test('should have wildcard event', function (done) {
     test.strictEqual(nume, 444444)
   })
   app.emit('haha', 444444)
+  done()
+})
+
+test('should return app if .use(plugin) dont', function (done) {
+  const app = dush()
+  app
+    .use((app) => {
+      app.foo = 'bar'
+    })
+    .use((app) => {
+      app.baz = 12345
+      return app
+    })
+    .use((app) => {
+      app.qux = 'zzz'
+    })
+
+  test.strictEqual(app.foo, 'bar')
+  test.strictEqual(app.baz, 12345)
+  test.strictEqual(app.qux, 'zzz')
   done()
 })

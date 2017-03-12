@@ -63,6 +63,39 @@ function dush () {
     all: all,
 
     /**
+     * > Invokes `plugin` function immediately, which is passed
+     * with `app` instance. You can use it for adding more methods
+     * or properties to the instance. Useful if you want to make
+     * dush to work with DOM for example.
+     *
+     * ```js
+     * const app = dush()
+     *
+     * app.on('hi', (str) => {
+     *   console.log(str) // => 'Hello World!!'
+     * })
+     *
+     * app.use((app) => {
+     *   app.foo = 'bar'
+     *   app.hello = (place) => app.emit('hi', `Hello ${place}!!`)
+     * })
+     *
+     * console.log(app.foo) // => 'bar'
+     * app.hello('World')
+     * ```
+     *
+     * @name   .use
+     * @param  {Function} `plugin` A function passed with `(app)` signature
+     * @return {Object} The `dush` instance for chaining
+     * @api public
+     */
+
+    use: function use (plugin) {
+      plugin(app);
+      return app
+    },
+
+    /**
      * > Add `handler` for `name` event.
      *
      * See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
