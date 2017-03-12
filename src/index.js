@@ -85,7 +85,7 @@ export default function dush () {
      *
      * @name   .on
      * @param  {String} `name` Type of event to listen for, or `'*'` for all events
-     * @param  {String} `handler` Function to call in response to given event
+     * @param  {Function} `handler` Function to call in response to given event
      * @return {Object} The `dush` instance for chaining
      * @api public
      */
@@ -124,7 +124,7 @@ export default function dush () {
      *
      * @name   .once
      * @param  {String} `name` Type of event to listen for, or `'*'` for all events
-     * @param  {String} `handler` Function to call in response to given event
+     * @param  {Function} `handler` Function to call in response to given event
      * @return {Object} The `dush` instance for chaining
      * @api public
      */
@@ -168,7 +168,7 @@ export default function dush () {
      *
      * @name   .off
      * @param  {String} `name` Type of event to listen for, or `'*'` for all events
-     * @param  {String} `handler` Function to call in response to given event
+     * @param  {Function} `handler` Function to call in response to given event
      * @return {Object} The `dush` instance for chaining
      * @api public
      */
