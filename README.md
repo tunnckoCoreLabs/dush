@@ -18,7 +18,7 @@ for few things and that's why `dush` exists.
 
 - **Microscopic:** Around ~350 bytes gzip + minify, including the UMD wrapper.
 - **Functional:** Methods don't rely on `this` context.
-- **Extendsible:** Through simple plugins, for more customizations and wrappers.
+- **Extensible:** Through simple plugins, for more customizations and wrappers.
 - **Compatibility:** Almost like Node's EventEmitter.
 - **Compliant:** Can `.emit` events with multiple params.
 - **Chaining:** Support all methods to be chainable.
