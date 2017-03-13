@@ -91,8 +91,8 @@ export default function dush () {
      */
 
     use (plugin) {
-      plugin(app)
-      return app
+      let ret = plugin(app)
+      return ret || app
     },
 
     /**

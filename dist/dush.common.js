@@ -91,8 +91,8 @@ function dush () {
      */
 
     use: function use (plugin) {
-      plugin(app);
-      return app
+      var ret = plugin(app);
+      return ret || app
     },
 
     /**
