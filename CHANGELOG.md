@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.1"></a>
+## [2.1.1](https://github.com/tunnckocore/dush/compare/v2.1.0...v2.1.1) (2017-03-13)
+
+
+### Bug Fixes
+
+* **plugins:** allow plugin to return ([4b0936e](https://github.com/tunnckocore/dush/commit/4b0936e))
+
+
+
 <a name="2.1.0"></a>
 # [2.1.0](https://github.com/tunnckocore/dush/compare/v2.0.2...v2.1.0) (2017-03-12)
 
