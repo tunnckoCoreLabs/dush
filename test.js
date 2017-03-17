@@ -43,10 +43,10 @@ test('should instace has .all object that contains all handlers', function (done
 
 test('should register handlers for any type of string', function (done) {
   var app = dush()
-  app.on('varructor', function (a) {
+  app.on('constructor', function (a) {
     test.ok(a === 2)
   })
-  app.emit('varructor', 2)
+  app.emit('constructor', 2)
   done()
 })
 
@@ -199,4 +199,30 @@ test('should not allow emitting the wildcard (issue#5)', function (done) {
   emitter.emit('foo', 1, 2, 3)
   emitter.emit('*', 555)
   done()
+})
+
+test('should not add additional arguments when emit', function (done) {
+  var app = dush()
+  app.on('foo', function () {
+    // prev versions was calling the handler
+    // with `undefined, undefined, undefined` event if
+    // `.emit` don't pass any arguments...
+    test.strictEqual(arguments.length, 1)
+    done()
+  })
+
+  app.emit('foo', 1)
+})
+
+test('should support to emit any number of arguments', function (done) {
+  dush()
+    .on('zazzie', function (aa, bb, cc, dd, ee) {
+      test.strictEqual(aa, 1)
+      test.strictEqual(bb, 2)
+      test.strictEqual(cc, 3)
+      test.strictEqual(dd, 4)
+      test.strictEqual(ee, 5)
+      done()
+    })
+    .emit('zazzie', 1, 2, 3, 4, 5)
 })

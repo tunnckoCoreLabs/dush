@@ -244,15 +244,16 @@ export default function dush () {
      *
      * @name   .emit
      * @param  {String} `name` The name of the event to invoke
-     * @param  {any} `args` Maximum 3 arguments of any type of value, passed to each listener
+     * @param  {any} `args` Any number of arguments of any type of value, passed to each listener
      * @return {Object} The `dush` instance for chaining
      * @api public
      */
 
-    emit (name, a, b, c) {
+    emit (name) {
       if (name !== '*') {
-        (all[name] || []).map((handler) => { handler(a, b, c) });
-        (all['*'] || []).map((handler) => { handler(name, a, b, c) })
+        var args = [].slice.call(arguments);
+        (all[name] || []).map((handler) => { handler.apply(app, args.slice(1)) });
+        (all['*'] || []).map((handler) => { handler.apply(app, args) })
       }
 
       return app
