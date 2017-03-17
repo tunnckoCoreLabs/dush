@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.1.2"></a>
+## [2.1.2](https://github.com/tunnckocore/dush/compare/v2.1.1...v2.1.2) (2017-03-17)
+
+
+### Bug Fixes
+
+* **args:** support to emit any number of arguments ([84b7e9a](https://github.com/tunnckocore/dush/commit/84b7e9a))
+* **this:** update tests; listeners should not have "this" context ([534f7a3](https://github.com/tunnckocore/dush/commit/534f7a3))
+
+
+
 <a name="2.1.1"></a>
 ## [2.1.1](https://github.com/tunnckocore/dush/compare/v2.1.0...v2.1.1) (2017-03-13)
 
