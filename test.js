@@ -226,3 +226,16 @@ test('should support to emit any number of arguments', function (done) {
     })
     .emit('zazzie', 1, 2, 3, 4, 5)
 })
+
+test('should event listeners not have `this` context', function (done) {
+  function listener (hi) {
+    test.strictEqual(hi, 'hello world')
+    test.strictEqual(this, undefined)
+    done()
+  }
+
+  var app = dush()
+  app.on('ctx', listener)
+  app.once('ctx', listener)
+  app.emit('ctx', 'hello world')
+})

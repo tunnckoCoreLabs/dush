@@ -252,8 +252,8 @@ export default function dush () {
     emit (name) {
       if (name !== '*') {
         var args = [].slice.call(arguments);
-        (all[name] || []).map((handler) => { handler.apply(app, args.slice(1)) });
-        (all['*'] || []).map((handler) => { handler.apply(app, args) })
+        (all[name] || []).map((handler) => { handler.apply(undefined, args.slice(1)) });
+        (all['*'] || []).map((handler) => { handler.apply(undefined, args) })
       }
 
       return app

@@ -250,8 +250,8 @@ function dush () {
     emit: function emit (name) {
       if (name !== '*') {
         var args = [].slice.call(arguments);
-        (all[name] || []).map(function (handler) { handler.apply(app, args.slice(1)); });
-        (all['*'] || []).map(function (handler) { handler.apply(app, args); });
+        (all[name] || []).map(function (handler) { handler.apply(undefined, args.slice(1)); });
+        (all['*'] || []).map(function (handler) { handler.apply(undefined, args); });
       }
 
       return app
