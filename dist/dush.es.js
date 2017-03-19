@@ -38,7 +38,7 @@ function dush () {
      * is an array of event listeners for the key and 2) key
      * is the name of the event.
      *
-     * See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
+     * See [JSBin Example](http://jsbin.com/fakajazafu/edit?js,console).
      *
      * **Example**
      *
@@ -51,6 +51,9 @@ function dush () {
      *
      * console.log(emitter._allEvents)
      * // => { foo: [Function, Function], bar: [Functon] }
+     *
+     * console.log(emitter._allEvents.foo.length) // => 2
+     * console.log(emitter._allEvents.bar.length) // => 1
      * ```
      *
      * @name  ._allEvents

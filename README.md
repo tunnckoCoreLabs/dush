@@ -115,10 +115,10 @@ console.log(emitter.off) // => Function
 console.log(emitter.emit) // => Function
 ```
 
-### [._allEvents](src/index.js#L63)
+### [._allEvents](src/index.js#L66)
 > An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event.
 
-See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
+See [JSBin Example](http://jsbin.com/fakajazafu/edit?js,console).
 
 **Example**
 
@@ -131,9 +131,12 @@ emitter.on('bar', () => {})
 
 console.log(emitter._allEvents)
 // => { foo: [Function, Function], bar: [Functon] }
+
+console.log(emitter._allEvents.foo.length) // => 2
+console.log(emitter._allEvents.bar.length) // => 1
 ```
 
-### [.use](src/index.js#L93)
+### [.use](src/index.js#L96)
 > Invokes `plugin` function immediately, which is passed with `app` instance. You can use it for adding more methods or properties to the instance. Useful if you want to make dush to work with DOM for example.
 
 **Params**
@@ -159,7 +162,7 @@ console.log(app.foo) // => 'bar'
 app.hello('World')
 ```
 
-### [.on](src/index.js#L128)
+### [.on](src/index.js#L131)
 > Add `handler` for `name` event.
 
 See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
@@ -187,7 +190,7 @@ emitter
 emitter.emit('hi', 'world')
 ```
 
-### [.once](src/index.js#L178)
+### [.once](src/index.js#L181)
 > Add `handler` for `name` event that will be called only one time.
 
 See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
@@ -217,7 +220,7 @@ emitter
 console.log(called) // => 1
 ```
 
-### [.off](src/index.js#L218)
+### [.off](src/index.js#L221)
 > Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
 
 See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
@@ -250,7 +253,7 @@ emitter.off('foo')
 emitter.emit('foo')
 ```
 
-### [.emit](src/index.js#L264)
+### [.emit](src/index.js#L267)
 > Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments.
 
 See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
