@@ -214,11 +214,11 @@ export default function dush () {
      */
 
     off (name, handler) {
-      if (handler && all[name]) {
+      if (handler && app.all[name]) {
         const fnStr = handler.toString()
-        all[name] = all[name].filter((func) => func.sourceString !== fnStr)
+        app.all[name] = app.all[name].filter((func) => func.sourceString !== fnStr)
       } else if (name) {
-        all[name] = []
+        app.all[name] = []
       } else {
         app.all = Object.create(null)
       }
@@ -262,8 +262,8 @@ export default function dush () {
     emit (name) {
       if (name !== '*') {
         var args = [].slice.call(arguments);
-        (all[name] || []).map((handler) => { handler.apply(handler, args.slice(1)) });
-        (all['*'] || []).map((handler) => { handler.apply(handler, args) })
+        (app.all[name] || []).map((handler) => { handler.apply(handler, args.slice(1)) });
+        (app.all['*'] || []).map((handler) => { handler.apply(handler, args) })
       }
 
       return app
