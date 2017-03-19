@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.0"></a>
+# [3.0.0](https://github.com/tunnckocore/dush/compare/v2.2.0...v3.0.0) (2017-03-19)
+
+
+### Bug Fixes
+
+* **all:** rename ".all" to "._allEvents" ([d760ecd](https://github.com/tunnckocore/dush/commit/d760ecd))
+* **docs:** update docs for rename change ([029b8d3](https://github.com/tunnckocore/dush/commit/029b8d3))
+* **docs:** update example for the "._allEvents" ([54910c3](https://github.com/tunnckocore/dush/commit/54910c3))
+
+
+### BREAKING CHANGES
+
+* **all:** rename ".all" to "._allEvents"
+
+
+
 <a name="2.2.0"></a>
 # [2.2.0](https://github.com/tunnckocore/dush/compare/v2.1.2...v2.2.0) (2017-03-19)
 

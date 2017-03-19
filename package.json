@@ -1,6 +1,6 @@
 {
   "name": "dush",
-  "version": "2.2.0",
+  "version": "3.0.0",
   "description": "Microscopic & functional event emitter in ~260 bytes, extensible through plugins.",
   "repository": "tunnckoCore/dush",
   "author": "Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)",
