@@ -119,6 +119,8 @@ export default function dush () {
      * @name   .on
      * @param  {String} `name` Type of event to listen for, or `'*'` for all events
      * @param  {Function} `handler` Function to call in response to given event
+     * @param  {Boolean} `once` Make `handler` be called only once,
+     *                          the `.once` method use this internally
      * @return {Object} The `dush` instance for chaining
      * @api public
      */
