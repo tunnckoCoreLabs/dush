@@ -2,6 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="2.2.0"></a>
+# [2.2.0](https://github.com/tunnckocore/dush/compare/v2.1.2...v2.2.0) (2017-03-19)
+
+
+### Bug Fixes
+
+* **app.all:** tweaks, ensure refereces ([36e4c9e](https://github.com/tunnckocore/dush/commit/36e4c9e))
+* **exports:** fix es bundle ([fec33b9](https://github.com/tunnckocore/dush/commit/fec33b9))
+* **off/once:** better .off and .once methods ([f5cbef1](https://github.com/tunnckocore/dush/commit/f5cbef1)), closes [#8](https://github.com/tunnckocore/dush/issues/8) [#9](https://github.com/tunnckocore/dush/issues/9)
+
+
+### Features
+
+* **context:** context of listener is now the listener ([923391d](https://github.com/tunnckocore/dush/commit/923391d))
+* **off:** allow removing all listeners of all events ([095140f](https://github.com/tunnckocore/dush/commit/095140f))
+
+
+
 <a name="2.1.2"></a>
 ## [2.1.2](https://github.com/tunnckocore/dush/compare/v2.1.1...v2.1.2) (2017-03-17)
 
