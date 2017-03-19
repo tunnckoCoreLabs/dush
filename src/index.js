@@ -129,7 +129,7 @@ export default function dush () {
       function func () {
         if (!func.called) {
           app.off(name, func)
-          handler.apply(undefined, arguments)
+          handler.apply(handler, arguments)
           func.called = true
         }
       }
@@ -260,8 +260,8 @@ export default function dush () {
     emit (name) {
       if (name !== '*') {
         var args = [].slice.call(arguments);
-        (all[name] || []).map((handler) => { handler.apply(undefined, args.slice(1)) });
-        (all['*'] || []).map((handler) => { handler.apply(undefined, args) })
+        (all[name] || []).map((handler) => { handler.apply(handler, args.slice(1)) });
+        (all['*'] || []).map((handler) => { handler.apply(handler, args) })
       }
 
       return app
