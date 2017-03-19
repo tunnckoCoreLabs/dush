@@ -124,7 +124,7 @@ export default function dush () {
      */
 
     on (name, handler, once) {
-      let e = all[name] || (all[name] = [])
+      let e = app.all[name] || (app.all[name] = [])
 
       function func () {
         if (!func.called) {
@@ -217,8 +217,10 @@ export default function dush () {
       if (handler && all[name]) {
         const fnStr = handler.toString()
         all[name] = all[name].filter((func) => func.sourceString !== fnStr)
-      } else {
+      } else if (name) {
         all[name] = []
+      } else {
+        app.all = Object.create(null)
       }
 
       return app

@@ -122,7 +122,7 @@ function dush () {
      */
 
     on: function on (name, handler, once) {
-      var e = all[name] || (all[name] = []);
+      var e = app.all[name] || (app.all[name] = []);
 
       function func () {
         if (!func.called) {
@@ -215,8 +215,10 @@ function dush () {
       if (handler && all[name]) {
         var fnStr = handler.toString();
         all[name] = all[name].filter(function (func) { return func.sourceString !== fnStr; });
-      } else {
+      } else if (name) {
         all[name] = [];
+      } else {
+        app.all = Object.create(null);
       }
 
       return app

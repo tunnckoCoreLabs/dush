@@ -267,3 +267,25 @@ test('should `.on` work as `.once` if third argument is true', function (done) {
   test.strictEqual(calls, 1)
   done()
 })
+
+test('should `.off()` remove all listeners', function (done) {
+  var app = dush()
+  var fixture = function () {}
+  app.on('a', fixture)
+  app.once('a', fixture)
+  app.on('a', fixture)
+  app.on('b', fixture)
+  app.once('b', fixture)
+  app.on('c', fixture)
+
+  var evts = Object.keys(app.all)
+  test.strictEqual(evts.length, 3)
+  test.strictEqual(app.all.a.length, 3)
+  test.strictEqual(app.all.b.length, 2)
+  test.strictEqual(app.all.c.length, 1)
+
+  app.off()
+  var allEvents = Object.keys(app.all)
+  test.strictEqual(allEvents.length, 0)
+  done()
+})
