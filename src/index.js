@@ -31,7 +31,7 @@
  * @api public
  */
 
-module.exports = function dush () {
+export default function dush () {
   let all = Object.create(null)
   const app = {
     /**

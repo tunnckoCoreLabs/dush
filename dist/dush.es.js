@@ -29,7 +29,7 @@
  * @api public
  */
 
-module.exports = function dush () {
+function dush () {
   var all = Object.create(null);
   var app = {
     /**
@@ -267,4 +267,6 @@ module.exports = function dush () {
   };
 
   return app
-};
+}
+
+export default dush;
