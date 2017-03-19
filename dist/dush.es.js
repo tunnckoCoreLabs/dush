@@ -29,7 +29,7 @@
  * @api public
  */
 
-function dush () {
+module.exports = function dush () {
   var all = Object.create(null);
   var app = {
     /**
@@ -121,10 +121,21 @@ function dush () {
      * @api public
      */
 
-    on: function on (name, handler) {
+    on: function on (name, handler, once) {
       var e = all[name] || (all[name] = []);
-      e.push(handler);
 
+      function func () {
+        if (!func.called) {
+          app.off(name, func);
+          handler.apply(undefined, arguments);
+          func.called = true;
+        }
+      }
+
+      var fn = once ? func : handler;
+      fn.sourceString = handler.toString();
+
+      e.push(fn);
       return app
     },
 
@@ -161,12 +172,8 @@ function dush () {
      */
 
     once: function once (name, handler) {
-      function fn (a, b, c) {
-        app.off(name, fn);
-        handler(a, b, c);
-      }
-
-      return app.on(name, fn)
+      app.on(name, handler, true);
+      return app
     },
 
     /**
@@ -206,7 +213,8 @@ function dush () {
 
     off: function off (name, handler) {
       if (handler && all[name]) {
-        all[name].splice(all[name].indexOf(handler) >>> 0, 1);
+        var fnStr = handler.toString();
+        all[name] = all[name].filter(function (func) { return func.sourceString !== fnStr; });
       } else {
         all[name] = [];
       }
@@ -259,6 +267,4 @@ function dush () {
   };
 
   return app
-}
-
-export default dush;
+};

@@ -61,18 +61,6 @@ test('should .emit with multiple params (maximum 3)', function (done) {
   done()
 })
 
-test('should handler should not get 4th param', function (done) {
-  var app = dush()
-  app.once('quxie', function (a, b, c, d) {
-    test.strictEqual(a, 1)
-    test.strictEqual(b, 2)
-    test.strictEqual(c, 3)
-    test.strictEqual(d, undefined)
-  })
-  app.emit('quxie', 1, 2, 3, 4)
-  done()
-})
-
 test('should .on register multiple handlers', function (done) {
   var called = 0
   var fn = function (a) {
@@ -238,4 +226,34 @@ test('should event listeners not have `this` context', function (done) {
   app.on('ctx', listener)
   app.once('ctx', listener)
   app.emit('ctx', 'hello world')
+})
+
+test('should be able to `.off` the `.once` listeners (issue #7)', function (done) {
+  var emitter = dush()
+  var called = 0
+
+  function hello () {
+    called++
+  }
+
+  emitter.once('test', hello)
+  emitter.emit('test')
+  emitter.emit('test')
+  test.strictEqual(called, 1)
+  emitter.off('test', hello)
+  emitter.emit('test')
+  test.strictEqual(called, 1)
+  done()
+})
+
+test('should `.on` work as `.once` if third argument is true', function (done) {
+  var emitter = dush()
+  var calls = 0
+  function fn () {
+    calls++
+  }
+  emitter.on('onetime', fn, true)
+  emitter.emit('onetime')
+  test.strictEqual(calls, 1)
+  done()
 })

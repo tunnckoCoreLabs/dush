@@ -31,8 +31,8 @@
  * @api public
  */
 
-export default function dush () {
-  const all = Object.create(null)
+module.exports = function dush () {
+  let all = Object.create(null)
   const app = {
     /**
      * > An listeners map of all registered events
@@ -91,7 +91,7 @@ export default function dush () {
      */
 
     use (plugin) {
-      let ret = plugin(app)
+      const ret = plugin(app)
       return ret || app
     },
 
@@ -123,10 +123,21 @@ export default function dush () {
      * @api public
      */
 
-    on (name, handler) {
+    on (name, handler, once) {
       let e = all[name] || (all[name] = [])
-      e.push(handler)
 
+      function func () {
+        if (!func.called) {
+          app.off(name, func)
+          handler.apply(undefined, arguments)
+          func.called = true
+        }
+      }
+
+      var fn = once ? func : handler
+      fn.sourceString = handler.toString()
+
+      e.push(fn)
       return app
     },
 
@@ -163,12 +174,8 @@ export default function dush () {
      */
 
     once (name, handler) {
-      function fn (a, b, c) {
-        app.off(name, fn)
-        handler(a, b, c)
-      }
-
-      return app.on(name, fn)
+      app.on(name, handler, true)
+      return app
     },
 
     /**
@@ -208,7 +215,8 @@ export default function dush () {
 
     off (name, handler) {
       if (handler && all[name]) {
-        all[name].splice(all[name].indexOf(handler) >>> 0, 1)
+        const fnStr = handler.toString()
+        all[name] = all[name].filter((func) => func.sourceString !== fnStr)
       } else {
         all[name] = []
       }
