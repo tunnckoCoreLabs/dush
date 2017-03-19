@@ -34,7 +34,7 @@ for few things and that's why `dush` exists.
 - [Usage](#usage)
 - [API](#api)
   * [dush()](#dush)
-  * [.all](#all)
+  * [._allEvents](#_allevents)
   * [.use](#use)
   * [.on](#on)
   * [.once](#once)
@@ -108,14 +108,14 @@ See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
 const dush = require('dush')
 const emitter = dush()
 
-console.log(emitter.all) // => {}
+console.log(emitter._allEvents) // => {}
 console.log(emitter.on) // => Function
 console.log(emitter.once) // => Function
 console.log(emitter.off) // => Function
 console.log(emitter.emit) // => Function
 ```
 
-### [.all](src/index.js#L63)
+### [._allEvents](src/index.js#L63)
 > An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event.
 
 See [JSBin Example](http://jsbin.com/zuwayalovi/edit?js,console).
@@ -129,7 +129,7 @@ emitter.on('foo', () => {})
 emitter.on('foo', () => {})
 emitter.on('bar', () => {})
 
-console.log(emitter.all)
+console.log(emitter._allEvents)
 // => { foo: [Function, Function], bar: [Functon] }
 ```
 
