@@ -19,7 +19,7 @@
  * const dush = require('dush')
  * const emitter = dush()
  *
- * console.log(emitter.all) // => {}
+ * console.log(emitter._allEvents) // => {}
  * console.log(emitter.on) // => Function
  * console.log(emitter.once) // => Function
  * console.log(emitter.off) // => Function
@@ -32,7 +32,7 @@
  */
 
 export default function dush () {
-  let all = Object.create(null)
+  let _allEvents = Object.create(null)
   const app = {
     /**
      * > An listeners map of all registered events
@@ -51,16 +51,16 @@ export default function dush () {
      * emitter.on('foo', () => {})
      * emitter.on('bar', () => {})
      *
-     * console.log(emitter.all)
+     * console.log(emitter._allEvents)
      * // => { foo: [Function, Function], bar: [Functon] }
      * ```
      *
-     * @name  .all
-     * @type {Object} `all` a key/value store of all events and their listeners
+     * @name  ._allEvents
+     * @type {Object} `_allEvents` a key/value store of all events and their listeners
      * @api public
      */
 
-    all,
+    _allEvents,
 
     /**
      * > Invokes `plugin` function immediately, which is passed
@@ -126,7 +126,7 @@ export default function dush () {
      */
 
     on (name, handler, once) {
-      let e = app.all[name] || (app.all[name] = [])
+      let e = app._allEvents[name] || (app._allEvents[name] = [])
 
       function func () {
         if (!func.called) {
@@ -216,13 +216,13 @@ export default function dush () {
      */
 
     off (name, handler) {
-      if (handler && app.all[name]) {
+      if (handler && app._allEvents[name]) {
         const fnStr = handler.toString()
-        app.all[name] = app.all[name].filter((func) => func.sourceString !== fnStr)
+        app._allEvents[name] = app._allEvents[name].filter((func) => func.sourceString !== fnStr)
       } else if (name) {
-        app.all[name] = []
+        app._allEvents[name] = []
       } else {
-        app.all = Object.create(null)
+        app._allEvents = Object.create(null)
       }
 
       return app
@@ -264,8 +264,8 @@ export default function dush () {
     emit (name) {
       if (name !== '*') {
         var args = [].slice.call(arguments);
-        (app.all[name] || []).map((handler) => { handler.apply(handler, args.slice(1)) });
-        (app.all['*'] || []).map((handler) => { handler.apply(handler, args) })
+        (app._allEvents[name] || []).map((handler) => { handler.apply(handler, args.slice(1)) });
+        (app._allEvents['*'] || []).map((handler) => { handler.apply(handler, args) })
       }
 
       return app

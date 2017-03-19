@@ -13,8 +13,8 @@ var test = require('mukla')
 var dush = require('./dist/dush.common')
 var app = dush()
 
-test('should return an instance with methods and `.all` object', function (done) {
-  test.strictEqual(typeof app.all, 'object')
+test('should return an instance with methods and `._allEvents` object', function (done) {
+  test.strictEqual(typeof app._allEvents, 'object')
   test.strictEqual(typeof app.use, 'function')
   test.strictEqual(typeof app.on, 'function')
   test.strictEqual(typeof app.off, 'function')
@@ -23,7 +23,7 @@ test('should return an instance with methods and `.all` object', function (done)
   done()
 })
 
-test('should instace has .all object that contains all handlers', function (done) {
+test('should instace has ._allEvents object that contains all handlers', function (done) {
   var fn = function () {}
 
   app.on('aaa', fn)
@@ -33,10 +33,10 @@ test('should instace has .all object that contains all handlers', function (done
   app.on('ccc', fn)
   app.on('ccc', fn)
 
-  test.deepStrictEqual(Object.keys(app.all), ['aaa', 'bbb', 'ccc'])
-  test.strictEqual(app.all.aaa.length, 2)
-  test.strictEqual(app.all.bbb.length, 1)
-  test.strictEqual(app.all.ccc.length, 3)
+  test.deepStrictEqual(Object.keys(app._allEvents), ['aaa', 'bbb', 'ccc'])
+  test.strictEqual(app._allEvents.aaa.length, 2)
+  test.strictEqual(app._allEvents.bbb.length, 1)
+  test.strictEqual(app._allEvents.ccc.length, 3)
   app.emit('zzz')
   done()
 })
@@ -106,7 +106,7 @@ test('should .off("foo", fn) remove the handler', function (done) {
 
   test.strictEqual(called, 0)
   test.strictEqual(second, 1)
-  test.strictEqual(app.all.qux.length, 1)
+  test.strictEqual(app._allEvents.qux.length, 1)
   done()
 })
 
@@ -116,7 +116,7 @@ test('should .off("foo") remove all "foo" handlers', function (done) {
     .on('zzz', function () {})
     .off('zzz')
 
-  test.strictEqual(app.all.zzz.length, 0)
+  test.strictEqual(app._allEvents.zzz.length, 0)
   done()
 })
 
@@ -278,14 +278,14 @@ test('should `.off()` remove all listeners', function (done) {
   app.once('b', fixture)
   app.on('c', fixture)
 
-  var evts = Object.keys(app.all)
+  var evts = Object.keys(app._allEvents)
   test.strictEqual(evts.length, 3)
-  test.strictEqual(app.all.a.length, 3)
-  test.strictEqual(app.all.b.length, 2)
-  test.strictEqual(app.all.c.length, 1)
+  test.strictEqual(app._allEvents.a.length, 3)
+  test.strictEqual(app._allEvents.b.length, 2)
+  test.strictEqual(app._allEvents.c.length, 1)
 
   app.off()
-  var allEvents = Object.keys(app.all)
+  var allEvents = Object.keys(app._allEvents)
   test.strictEqual(allEvents.length, 0)
   done()
 })
