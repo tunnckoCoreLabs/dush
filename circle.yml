@@ -1,0 +1,17 @@
+dependencies:
+  override:
+    - nvm install 0.10 && npm install
+    - nvm use 0.12 && npm install
+    - nvm use 4 && yarn install
+    - nvm use 6 && yarn install
+    - nvm install 7 && yarn install
+
+test:
+  override:
+    - nvm use 0.10 && npm test
+    - nvm use 0.12 && npm test
+    - nvm use 4 && yarn test
+    - nvm use 6 && yarn test
+    - nvm use 7 && yarn test
+  post:
+    - bash <(curl -s https://codecov.io/bash)
