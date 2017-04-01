@@ -138,7 +138,7 @@ function dush () {
       }
 
       var fn = once ? func : handler;
-      fn.sourceString = handler.toString();
+      fn.__sourceString = handler.toString();
 
       e.push(fn);
       return app
@@ -219,7 +219,7 @@ function dush () {
     off: function off (name, handler) {
       if (handler && app._allEvents[name]) {
         var fnStr = handler.toString();
-        app._allEvents[name] = app._allEvents[name].filter(function (func) { return func.sourceString !== fnStr; });
+        app._allEvents[name] = app._allEvents[name].filter(function (func) { return func.__sourceString !== fnStr; });
       } else if (name) {
         app._allEvents[name] = [];
       } else {

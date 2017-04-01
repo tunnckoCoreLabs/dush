@@ -140,7 +140,7 @@ export default function dush () {
       }
 
       var fn = once ? func : handler
-      fn.sourceString = handler.toString()
+      fn.__sourceString = handler.toString()
 
       e.push(fn)
       return app
@@ -221,7 +221,7 @@ export default function dush () {
     off (name, handler) {
       if (handler && app._allEvents[name]) {
         const fnStr = handler.toString()
-        app._allEvents[name] = app._allEvents[name].filter((func) => func.sourceString !== fnStr)
+        app._allEvents[name] = app._allEvents[name].filter((func) => func.__sourceString !== fnStr)
       } else if (name) {
         app._allEvents[name] = []
       } else {
