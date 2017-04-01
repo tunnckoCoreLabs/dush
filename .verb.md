@@ -48,7 +48,7 @@ or queue a [live session][codementor-url] on CodeMentor with me.
 If you don't have any problems, you're using it somewhere or
 you just enjoy this product, then please consider [donating some cash][paypalme-url] at PayPal,
 since this is [OPEN Open Source][opensource-project-url] project made
-with :heart: at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
+with :heart: and because some need at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
 
 [![tunnckoCore support][supportchat-img]][supportchat-url] 
 [![code mentor][codementor-img]][codementor-url] 
