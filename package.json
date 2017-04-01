@@ -1,7 +1,7 @@
 {
   "name": "dush",
   "version": "3.0.2",
-  "description": "Microscopic & functional event emitter in ~260 bytes, extensible through plugins.",
+  "description": "Microscopic & functional event emitter in ~350 bytes, extensible through plugins",
   "repository": "tunnckoCore/dush",
   "author": "Charlike Mike Reagent <@tunnckoCore> (https://i.am.charlike.online)",
   "precommit.silent": true,
@@ -120,18 +120,21 @@
       "charlike",
       "commitizen",
       "dezalgo",
-      "hyperscript",
-      "mitt",
-      "once",
-      "standard-version",
-      "verb",
-      "verb-generate-readme",
-      "webpack",
       "dush-methods",
       "dush-no-chaining",
       "dush-router",
       "dush-tap-report",
-      "rollup"
+      "hyperscript",
+      "mitt",
+      "once",
+      "rollup",
+      "standard-version",
+      "verb",
+      "verb-generate-readme",
+      "webpack",
+      "dush-better-use",
+      "dush-options",
+      "dush-promise"
     ],
     "lint": {
       "reflinks": true
