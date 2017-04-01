@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.1"></a>
+## [3.0.1](https://github.com/tunnckocore/dush/compare/v3.0.0...v3.0.1) (2017-04-01)
+
+
+### Bug Fixes
+
+* **ci:** move to CircleCI, instead of TravisCI ([17bd948](https://github.com/tunnckocore/dush/commit/17bd948))
+* **index:** make detection "sourceString" more private ([7d6c4e2](https://github.com/tunnckocore/dush/commit/7d6c4e2))
+* **readme:** add list of plugins ([5b1fa43](https://github.com/tunnckocore/dush/commit/5b1fa43))
+* **readme:** include ToC ([af1bc04](https://github.com/tunnckocore/dush/commit/af1bc04))
+* **readme:** update boilerplate ([e9321a2](https://github.com/tunnckocore/dush/commit/e9321a2))
+
+
+
 <a name="3.0.0"></a>
 # [3.0.0](https://github.com/tunnckocore/dush/compare/v2.2.0...v3.0.0) (2017-03-19)
 
