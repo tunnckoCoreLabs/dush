@@ -1,18 +1,60 @@
-# dush [![NPM version](https://img.shields.io/npm/v/dush.svg?style=flat)](https://www.npmjs.com/package/dush) [![mit license][license-img]][license-url] [![NPM monthly downloads](https://img.shields.io/npm/dm/dush.svg?style=flat)](https://npmjs.org/package/dush) [![npm total downloads][downloads-img]][downloads-url]
+# dush [![npm version][npmv-img]][npmv-url] [![github tags][ghtag-img]][ghtag-url] [![mit license][license-img]][license-url]
 
 > Microscopic & functional event emitter in ~260 bytes, extensible through plugins.
 
+_You might also be interested in [mitt][] - a 200 bytes event emitter. It has strict policy 
+to stay exactly below 200b with no compromises, so has lack of support
+for few things and that's why `dush` exists._
+
+## Quality 👌
+
+> By using [commitizen][czfriendly-url] and [conventional commit messages][conventional-messages-url], 
+maintaining meaningful [ChangeLog][changelogmd-url] 
+and commit history based on [global conventions][conventions-url], 
+following [StandardJS][standard-url] code style through [ESLint][eslint-url] and
+having always up-to-date dependencies through integrations
+like [GreenKeeper][gk-integration-url] and [David-DM][daviddm-url] service,
+this package has top quality.
+
 [![code climate][codeclimate-img]][codeclimate-url] 
 [![code style][standard-img]][standard-url] 
-[![linux build][travis-img]][travis-url] 
-[![windows build][appveyor-img]][appveyor-url] 
-[![code coverage][coverage-img]][coverage-url] 
-[![dependency status][david-img]][david-url]
-[![paypal donate][paypalme-img]][paypalme-url] 
+[![commitizen friendly][czfriendly-img]][czfriendly-url] 
+[![greenkeeper friendly][gkfriendly-img]][gkfriendly-url] 
+[![dependencies][daviddm-deps-img]][daviddm-deps-url] 
+<!-- uncomment when need -->
+<!-- [![develop deps][daviddm-devdeps-img]][daviddm-devdeps-url] -->
 
-You might also be interested in [mitt][] - a 200 bytes event emitter. It has strict policy 
-to stay exactly below 200b with no compromises, so has lack of support
-for few things and that's why `dush` exists.
+## Stability 💯
+
+> By following [Semantic Versioning][semver-url] through [standard-version][] releasing tool, 
+this package is very stable and its tests are passing both on [Windows (AppVeyor)][appveyor-ci-url] 
+and [Linux (CircleCI)][circle-ci-url] with results 
+from 100% to [400%][absolute-coverage-url] test coverage, reported respectively
+by [CodeCov][codecov-coverage-url] and [nyc (istanbul)][nyc-istanbul-url].
+
+[![following semver][following-semver-img]][following-semver-url] 
+[![semantic releases][strelease-img]][strelease-url] 
+[![linux build][circle-img]][circle-url] 
+[![windows build][appveyor-img]][appveyor-url] 
+[![code coverage][codecov-img]][codecov-url] 
+[![nyc coverage][istanbulcov-img]][istanbulcov-url] 
+
+## Support :clap:
+
+> If you have any problems, consider opening [an issue][open-issue-url],
+ping me on twitter ([@tunnckoCore][tunnckocore-twitter-url]),
+join the [support chat][supportchat-url] room
+or queue a [live session][codementor-url] on CodeMentor with me.
+If you don't have any problems, you're using it somewhere or
+you just enjoy this product, then please consider [donating some cash][paypalme-url] at PayPal,
+since this is [OPEN Open Source][opensource-project-url] project made
+with :heart: at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
+
+[![tunnckoCore support][supportchat-img]][supportchat-url] 
+[![code mentor][codementor-img]][codementor-url] 
+[![paypal donate][paypalme-img]][paypalme-url] 
+[![NPM monthly downloads](https://img.shields.io/npm/dm/dush.svg?style=flat)](https://npmjs.org/package/dush) 
+[![npm total downloads][downloads-img]][downloads-url] 
 
 ## Highlights :sparkles:
 
@@ -33,13 +75,6 @@ for few things and that's why `dush` exists.
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
-  * [dush()](#dush)
-  * [._allEvents](#_allevents)
-  * [.use](#use)
-  * [.on](#on)
-  * [.once](#once)
-  * [.off](#off)
-  * [.emit](#emit)
 - [Related](#related)
 - [Contributing](#contributing)
 - [Building docs](#building-docs)
@@ -95,193 +130,6 @@ Old school in browsers, available at global scope
 
 ## API
 
-### [dush()](src/index.js#L34)
-> A constructor function that returns an object with a few methods.
-
-See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
-
-* `returns` **{Object}**: methods  
-
-**Example**
-
-```js
-const dush = require('dush')
-const emitter = dush()
-
-console.log(emitter._allEvents) // => {}
-console.log(emitter.on) // => Function
-console.log(emitter.once) // => Function
-console.log(emitter.off) // => Function
-console.log(emitter.emit) // => Function
-```
-
-### [._allEvents](src/index.js#L66)
-> An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event.
-
-See [JSBin Example](http://jsbin.com/fakajazafu/edit?js,console).
-
-**Example**
-
-```js
-const emitter = dush()
-
-emitter.on('foo', () => {})
-emitter.on('foo', () => {})
-emitter.on('bar', () => {})
-
-console.log(emitter._allEvents)
-// => { foo: [Function, Function], bar: [Functon] }
-
-console.log(emitter._allEvents.foo.length) // => 2
-console.log(emitter._allEvents.bar.length) // => 1
-```
-
-### [.use](src/index.js#L96)
-> Invokes `plugin` function immediately, which is passed with `app` instance. You can use it for adding more methods or properties to the instance. Useful if you want to make dush to work with DOM for example.
-
-**Params**
-
-* `plugin` **{Function}**: A function passed with `(app)` signature    
-* `returns` **{Object}**: The `dush` instance for chaining  
-
-**Example**
-
-```js
-const app = dush()
-
-app.on('hi', (str) => {
-  console.log(str) // => 'Hello World!!'
-})
-
-app.use((app) => {
-  app.foo = 'bar'
-  app.hello = (place) => app.emit('hi', `Hello ${place}!!`)
-})
-
-console.log(app.foo) // => 'bar'
-app.hello('World')
-```
-
-### [.on](src/index.js#L131)
-> Add `handler` for `name` event.
-
-See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
-
-**Params**
-
-* `name` **{String}**: Type of event to listen for, or `'*'` for all events    
-* `handler` **{Function}**: Function to call in response to given event    
-* `once` **{Boolean}**: Make `handler` be called only once, the `.once` method use this internally    
-* `returns` **{Object}**: The `dush` instance for chaining  
-
-**Example**
-
-```js
-const emitter = dush()
-
-emitter
-  .on('hi', (place) => {
-    console.log(`hello ${place}!`) // => 'hello world!'
-  })
-  .on('hi', (place) => {
-    console.log(`hi ${place}, yeah!`) // => 'hi world, yeah!'
-  })
-
-emitter.emit('hi', 'world')
-```
-
-### [.once](src/index.js#L181)
-> Add `handler` for `name` event that will be called only one time.
-
-See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
-
-**Params**
-
-* `name` **{String}**: Type of event to listen for, or `'*'` for all events    
-* `handler` **{Function}**: Function to call in response to given event    
-* `returns` **{Object}**: The `dush` instance for chaining  
-
-**Example**
-
-```js
-const emitter = dush()
-let called = 0
-
-emitter.once('foo', () => {
-  console.log('called only once')
-  called++
-})
-
-emitter
-  .emit('foo', 111)
-  .emit('foo', 222)
-  .emit('foo', 333)
-
-console.log(called) // => 1
-```
-
-### [.off](src/index.js#L221)
-> Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
-
-See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
-
-**Params**
-
-* `name` **{String}**: Type of event to listen for, or `'*'` for all events    
-* `handler` **{Function}**: Function to call in response to given event    
-* `returns` **{Object}**: The `dush` instance for chaining  
-
-**Example**
-
-```js
-const emitter = dush()
-
-const handler = () => {
-  console.log('not called')
-}
-
-emitter.on('foo', handler)
-emitter.off('foo', handler)
-
-emitter.on('foo', (abc) => {
-  console.log('called', abc) // => 'called 123'
-})
-emitter.emit('foo', 123)
-
-// or removing all listeners of `foo`
-emitter.off('foo')
-emitter.emit('foo')
-```
-
-### [.emit](src/index.js#L267)
-> Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments.
-
-See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
-
-**Params**
-
-* `name` **{String}**: The name of the event to invoke    
-* `args` **{any}**: Any number of arguments of any type of value, passed to each listener    
-* `returns` **{Object}**: The `dush` instance for chaining  
-
-**Example**
-
-```js
-const emitter = dush()
-
-emitter.on('foo', (a, b, c) => {
-  console.log(`${a}, ${b}, ${c}`) // => 1, 2, 3
-})
-
-emitter.on('*', (name, a, b, c) => {
-  console.log(`name is: ${name}`)
-  console.log(`rest args are: ${a}, ${b}, ${c}`)
-})
-
-emitter.emit('foo', 1, 2, 3)
-emitter.emit('bar', 555)
-```
-
 ## Related
 - [always-done](https://www.npmjs.com/package/always-done): Handle completion and errors with elegance! Support for streams, callbacks, promises, child processes, async/await and sync functions. A drop-in replacement… [more](https://github.com/hybridables/always-done#readme) | [homepage](https://github.com/hybridables/always-done#readme "Handle completion and errors with elegance! Support for streams, callbacks, promises, child processes, async/await and sync functions. A drop-in replacement for [async-done][] - pass 100% of its tests plus more")
 - [dual-emitter](https://www.npmjs.com/package/dual-emitter): :tropical_drink: EventEmitter done right and no dependencies. For nodejs and the browser (>= IE8). Can emit custom or DOM events. | [homepage](https://github.com/tunnckocore/dual-emitter#readme ":tropical_drink: EventEmitter done right and no dependencies. For nodejs and the browser (>= IE8). Can emit custom or DOM events.")
@@ -294,13 +142,13 @@ emitter.emit('bar', 555)
 - [unfetch](https://www.npmjs.com/package/unfetch): Bare minimum fetch polyfill in 500 bytes | [homepage](https://github.com/developit/unfetch "Bare minimum fetch polyfill in 500 bytes")
 
 ## Contributing
-Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue](https://github.com/tunnckoCore/dush/issues/new).  
-Please read the [contributing guidelines](CONTRIBUTING.md) for advice on opening issues, pull requests, and coding standards.  
-If you need some help and can spent some cash, feel free to [contact me at CodeMentor.io](https://www.codementor.io/tunnckocore?utm_source=github&utm_medium=button&utm_term=tunnckocore&utm_campaign=github) too.
+Pull requests and stars are always welcome. For bugs and feature requests, [please create an issue][open-issue-url].  
+Please read the [contributing guidelines][contributing-url] for advice on opening issues, pull requests, and coding standards.  
+If you need some help and can spent some cash, feel free to [contact me at CodeMentor.io][codementor-url] too.
 
 **In short:** If you want to contribute to that project, please follow these things
 
-1. Please DO NOT edit [README.md](README.md), [CHANGELOG.md](CHANGELOG.md) and [.verb.md](.verb.md) files. See ["Building docs"](#building-docs) section.
+1. Please DO NOT edit [README.md](README.md), [CHANGELOG.md][changelogmd-url] and [.verb.md](.verb.md) files. See ["Building docs"](#building-docs) section.
 2. Ensure anything is okey by installing the dependencies and run the tests. See ["Running tests"](#running-tests) section.
 3. Always use `npm run commit` to commit changes instead of `git commit`, because it is interactive and user-friendly. It uses [commitizen][] behind the scenes, which follows Conventional Changelog idealogy.
 4. Do NOT bump the version in package.json. For that we use `npm run release`, which is [standard-version][] and follows Conventional Changelog idealogy.
@@ -335,7 +183,7 @@ Copyright © 2015, 2017, [Charlike Mike Reagent](https://i.am.charlike.online). 
 
 ***
 
-_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.3, on March 19, 2017._  
+_This file was generated by [verb-generate-readme](https://github.com/verbose/verb-generate-readme), v0.4.3, on April 01, 2017._  
 _Project scaffolded using [charlike][] cli._
 
 [always-done]: https://github.com/hybridables/always-done
@@ -353,7 +201,7 @@ _Project scaffolded using [charlike][] cli._
 [verb]: https://github.com/verbose/verb
 [webpack]: https://github.com/webpack/webpack
 
-[license-url]: https://www.npmjs.com/package/dush
+[license-url]: https://github.com/tunnckoCore/dush/blob/master/LICENSE
 [license-img]: https://img.shields.io/npm/l/dush.svg
 
 [downloads-url]: https://www.npmjs.com/package/dush
@@ -362,22 +210,71 @@ _Project scaffolded using [charlike][] cli._
 [codeclimate-url]: https://codeclimate.com/github/tunnckoCore/dush
 [codeclimate-img]: https://img.shields.io/codeclimate/github/tunnckoCore/dush.svg
 
-[travis-url]: https://travis-ci.org/tunnckoCore/dush
-[travis-img]: https://img.shields.io/travis/tunnckoCore/dush/master.svg?label=linux
+[circle-url]: https://circleci.com/gh/tunnckoCore/dush
+[circle-img]: https://img.shields.io/circleci/project/github/tunnckoCore/dush/master.svg?label=linux
 
 [appveyor-url]: https://ci.appveyor.com/project/tunnckoCore/dush
 [appveyor-img]: https://img.shields.io/appveyor/ci/tunnckoCore/dush/master.svg?label=windows
 
-[coverage-url]: https://codecov.io/gh/tunnckoCore/dush
-[coverage-img]: https://img.shields.io/codecov/c/github/tunnckoCore/dush/master.svg
+[codecov-url]: https://codecov.io/gh/tunnckoCore/dush
+[codecov-img]: https://img.shields.io/codecov/c/github/tunnckoCore/dush/master.svg?label=codecov
 
-[david-url]: https://david-dm.org/tunnckoCore/dush
-[david-img]: https://img.shields.io/david/tunnckoCore/dush.svg
+[daviddm-deps-url]: https://david-dm.org/tunnckoCore/dush
+[daviddm-deps-img]: https://img.shields.io/david/tunnckoCore/dush.svg
+
+[daviddm-devdeps-url]: https://david-dm.org/tunnckoCore/dush?type=dev
+[daviddm-devdeps-img]: https://img.shields.io/david/dev/tunnckoCore/dush.svg
+
+[ghtag-url]: https://github.com/tunnckoCore/dush/releases/tag/v3.0.0
+[ghtag-img]: https://img.shields.io/github/tag/tunnckoCore/dush.svg?label=github%20tag
+
+[npmv-url]: https://www.npmjs.com/package/dush
+[npmv-img]: https://img.shields.io/npm/v/dush.svg?label=npm%20version
 
 [standard-url]: https://github.com/feross/standard
 [standard-img]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg
 
 [paypalme-url]: https://www.paypal.me/tunnckoCore
 [paypalme-img]: https://img.shields.io/badge/paypal-donate-brightgreen.svg
+
+[czfriendly-url]: http://commitizen.github.io/cz-cli
+[czfriendly-img]: https://img.shields.io/badge/commitizen-friendly-brightgreen.svg
+
+[gkfriendly-url]: https://greenkeeper.io/
+[gkfriendly-img]: https://img.shields.io/badge/greenkeeper-friendly-brightgreen.svg
+
+[codementor-url]: https://www.codementor.io/tunnckocore?utm_source=github&utm_medium=button&utm_term=tunnckocore&utm_campaign=github
+[codementor-img]: https://img.shields.io/badge/code%20mentor-live%20session-brightgreen.svg
+
+[istanbulcov-url]: https://twitter.com/tunnckoCore/status/841768516965568512
+[istanbulcov-img]: https://img.shields.io/badge/istanbul-400%25-brightgreen.svg
+
+[following-semver-url]: http://semver.org
+[following-semver-img]: https://img.shields.io/badge/following-semver-brightgreen.svg
+
+[strelease-url]: https://github.com/conventional-changelog/standard-version
+[strelease-img]: https://img.shields.io/badge/using-standard%20version-brightgreen.svg
+
+[supportchat-url]: https://gitter.im/tunnckoCore/support
+[supportchat-img]: https://img.shields.io/gitter/room/tunnckoCore/support.svg
+
+[bulgaria-url]: https://www.google.bg/search?q=Sofia%2C+Bulgaria "One of the top 10 best places for start-up business in the world, especially in IT technologies"
+
+[changelogmd-url]: https://github.com/tunnckoCore/dush/blob/master/CHANGELOG.md
+[conventions-url]: https://github.com/bcoe/conventional-changelog-standard/blob/master/convention.md
+[tunnckocore-twitter-url]: https://twitter.com/tunnckoCore
+[opensource-project-url]: http://openopensource.org
+[nyc-istanbul-url]: https://istanbul.js.org
+[circle-ci-url]: https://circleci.com
+[appveyor-ci-url]: https://appveyor.com
+[codecov-coverage-url]: https://codecov.io
+[semver-url]: http://semver.org
+[eslint-url]: http://eslint.org
+[conventional-messages-url]: https://github.com/conventional-changelog/conventional-changelog
+[gk-integration-url]: https://github.com/integration/greenkeeper
+[daviddm-url]: https://david-dm.org
+[open-issue-url]: https://github.com/tunnckoCore/dush/issues/new
+[contributing-url]: https://github.com/tunnckoCore/dush/blob/master/CONTRIBUTING.md
+[absolute-coverage-url]: https://github.com/tunnckoCore/dush/blob/master/package.json
 
 [rollup]: https://github.com/rollup/rollup
