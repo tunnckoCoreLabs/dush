@@ -71,6 +71,16 @@ with love at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
 - **Meaning:** [Hear it](https://translate.google.com/?hl=bg&tab=wT#en/bg/dush). It just means `shower` in Bulgarian.
 - **Clean:** Does not mess with DOM or anything.
 
+## Plugins
+
+- [dush-router][] - Simple regex-based router with Express-like routing, for browser and nodejs
+- [dush-no-chaining][] - Removes the support for chaining methods
+- [dush-methods][] - Adds `.define` and `.delegate` methods for defining non-enumerables
+- [dush-tap-report][] - Produces TAP report, based on events such as `pass`, `fail`, `start` and `finish`
+- [dush-promise](https://github.com/tunnckoCore/dush-promise) - Makes `dush` a Deferred promise, centralized error handling
+- [dush-plugins](https://github.com/tunnckoCore/dush-plugins) - Upgrades the current plugin system with support for smart plugins
+- [dush-options](https://github.com/tunnckoCore/dush-options) - Adds `.option` method and `app.options` property
+
 ## Table of Contents
 - [Install](#install)
 - [Usage](#usage)
@@ -387,9 +397,14 @@ _Project scaffolded using [charlike][] cli._
 [charlike]: https://github.com/tunnckocore/charlike
 [commitizen]: https://github.com/commitizen/cz-cli
 [dezalgo]: https://github.com/npm/dezalgo
+[dush-methods]: https://github.com/tunnckocore/dush-methods
+[dush-no-chaining]: https://github.com/tunnckocore/dush-no-chaining
+[dush-router]: https://github.com/tunnckocore/dush-router
+[dush-tap-report]: https://github.com/tunnckocore/dush-tap-report
 [hyperscript]: https://github.com/dominictarr/hyperscript
 [mitt]: https://github.com/developit/mitt
 [once]: https://github.com/isaacs/once
+[rollup]: https://github.com/rollup/rollup
 [standard-version]: https://github.com/conventional-changelog/standard-version
 [verb-generate-readme]: https://github.com/verbose/verb-generate-readme
 [verb]: https://github.com/verbose/verb
@@ -471,4 +486,3 @@ _Project scaffolded using [charlike][] cli._
 [contributing-url]: https://github.com/tunnckoCore/dush/blob/master/CONTRIBUTING.md
 [absolute-coverage-url]: https://github.com/tunnckoCore/dush/blob/master/package.json
 
-[rollup]: https://github.com/rollup/rollup

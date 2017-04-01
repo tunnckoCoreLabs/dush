@@ -120,13 +120,18 @@
       "charlike",
       "commitizen",
       "dezalgo",
+      "hyperscript",
       "mitt",
       "once",
       "standard-version",
       "verb",
       "verb-generate-readme",
-      "hyperscript",
-      "webpack"
+      "webpack",
+      "dush-methods",
+      "dush-no-chaining",
+      "dush-router",
+      "dush-tap-report",
+      "rollup"
     ],
     "lint": {
       "reflinks": true
