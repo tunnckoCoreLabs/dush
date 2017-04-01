@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.2"></a>
+## [3.0.2](https://github.com/tunnckocore/dush/compare/v3.0.1...v3.0.2) (2017-04-01)
+
+
+### Bug Fixes
+
+* **ci:** add appveyor-retry ([6cb8ec0](https://github.com/tunnckocore/dush/commit/6cb8ec0))
+
+
+
 <a name="3.0.1"></a>
 ## [3.0.1](https://github.com/tunnckocore/dush/compare/v3.0.0...v3.0.1) (2017-04-01)
 
