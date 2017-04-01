@@ -48,7 +48,7 @@ or queue a [live session][codementor-url] on CodeMentor with me.
 If you don't have any problems, you're using it somewhere or
 you just enjoy this product, then please consider [donating some cash][paypalme-url] at PayPal,
 since this is [OPEN Open Source][opensource-project-url] project made
-with :heart: and because some need at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
+with love at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
 
 [![tunnckoCore support][supportchat-img]][supportchat-url] 
 [![code mentor][codementor-img]][codementor-url] 
@@ -75,6 +75,13 @@ with :heart: and because some need at [Sofia, Bulgaria][bulgaria-url] 🇧🇬.
 - [Install](#install)
 - [Usage](#usage)
 - [API](#api)
+  * [dush()](#dush)
+  * [._allEvents](#_allevents)
+  * [.use](#use)
+  * [.on](#on)
+  * [.once](#once)
+  * [.off](#off)
+  * [.emit](#emit)
 - [Related](#related)
 - [Contributing](#contributing)
 - [Building docs](#building-docs)
@@ -129,6 +136,193 @@ Old school in browsers, available at global scope
 ```
 
 ## API
+
+### [dush()](src/index.js#L34)
+> A constructor function that returns an object with a few methods.
+
+See [JSBin Example](http://jsbin.com/mepemeluhi/edit?js,console).
+
+* `returns` **{Object}**: methods  
+
+**Example**
+
+```js
+const dush = require('dush')
+const emitter = dush()
+
+console.log(emitter._allEvents) // => {}
+console.log(emitter.on) // => Function
+console.log(emitter.once) // => Function
+console.log(emitter.off) // => Function
+console.log(emitter.emit) // => Function
+```
+
+### [._allEvents](src/index.js#L66)
+> An listeners map of all registered events and their listeners. A key/value store, where 1) value is an array of event listeners for the key and 2) key is the name of the event.
+
+See [JSBin Example](http://jsbin.com/fakajazafu/edit?js,console).
+
+**Example**
+
+```js
+const emitter = dush()
+
+emitter.on('foo', () => {})
+emitter.on('foo', () => {})
+emitter.on('bar', () => {})
+
+console.log(emitter._allEvents)
+// => { foo: [Function, Function], bar: [Functon] }
+
+console.log(emitter._allEvents.foo.length) // => 2
+console.log(emitter._allEvents.bar.length) // => 1
+```
+
+### [.use](src/index.js#L96)
+> Invokes `plugin` function immediately, which is passed with `app` instance. You can use it for adding more methods or properties to the instance. Useful if you want to make dush to work with DOM for example.
+
+**Params**
+
+* `plugin` **{Function}**: A function passed with `(app)` signature    
+* `returns` **{Object}**: The `dush` instance for chaining  
+
+**Example**
+
+```js
+const app = dush()
+
+app.on('hi', (str) => {
+  console.log(str) // => 'Hello World!!'
+})
+
+app.use((app) => {
+  app.foo = 'bar'
+  app.hello = (place) => app.emit('hi', `Hello ${place}!!`)
+})
+
+console.log(app.foo) // => 'bar'
+app.hello('World')
+```
+
+### [.on](src/index.js#L131)
+> Add `handler` for `name` event.
+
+See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
+
+**Params**
+
+* `name` **{String}**: Type of event to listen for, or `'*'` for all events    
+* `handler` **{Function}**: Function to call in response to given event    
+* `once` **{Boolean}**: Make `handler` be called only once, the `.once` method use this internally    
+* `returns` **{Object}**: The `dush` instance for chaining  
+
+**Example**
+
+```js
+const emitter = dush()
+
+emitter
+  .on('hi', (place) => {
+    console.log(`hello ${place}!`) // => 'hello world!'
+  })
+  .on('hi', (place) => {
+    console.log(`hi ${place}, yeah!`) // => 'hi world, yeah!'
+  })
+
+emitter.emit('hi', 'world')
+```
+
+### [.once](src/index.js#L181)
+> Add `handler` for `name` event that will be called only one time.
+
+See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
+
+**Params**
+
+* `name` **{String}**: Type of event to listen for, or `'*'` for all events    
+* `handler` **{Function}**: Function to call in response to given event    
+* `returns` **{Object}**: The `dush` instance for chaining  
+
+**Example**
+
+```js
+const emitter = dush()
+let called = 0
+
+emitter.once('foo', () => {
+  console.log('called only once')
+  called++
+})
+
+emitter
+  .emit('foo', 111)
+  .emit('foo', 222)
+  .emit('foo', 333)
+
+console.log(called) // => 1
+```
+
+### [.off](src/index.js#L221)
+> Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
+
+See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
+
+**Params**
+
+* `name` **{String}**: Type of event to listen for, or `'*'` for all events    
+* `handler` **{Function}**: Function to call in response to given event    
+* `returns` **{Object}**: The `dush` instance for chaining  
+
+**Example**
+
+```js
+const emitter = dush()
+
+const handler = () => {
+  console.log('not called')
+}
+
+emitter.on('foo', handler)
+emitter.off('foo', handler)
+
+emitter.on('foo', (abc) => {
+  console.log('called', abc) // => 'called 123'
+})
+emitter.emit('foo', 123)
+
+// or removing all listeners of `foo`
+emitter.off('foo')
+emitter.emit('foo')
+```
+
+### [.emit](src/index.js#L267)
+> Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments.
+
+See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
+
+**Params**
+
+* `name` **{String}**: The name of the event to invoke    
+* `args` **{any}**: Any number of arguments of any type of value, passed to each listener    
+* `returns` **{Object}**: The `dush` instance for chaining  
+
+**Example**
+
+```js
+const emitter = dush()
+
+emitter.on('foo', (a, b, c) => {
+  console.log(`${a}, ${b}, ${c}`) // => 1, 2, 3
+})
+
+emitter.on('*', (name, a, b, c) => {
+  console.log(`name is: ${name}`)
+  console.log(`rest args are: ${a}, ${b}, ${c}`)
+})
+
+emitter.emit('foo', 1, 2, 3)
+emitter.emit('bar', 555)
+```
 
 ## Related
 - [always-done](https://www.npmjs.com/package/always-done): Handle completion and errors with elegance! Support for streams, callbacks, promises, child processes, async/await and sync functions. A drop-in replacement… [more](https://github.com/hybridables/always-done#readme) | [homepage](https://github.com/hybridables/always-done#readme "Handle completion and errors with elegance! Support for streams, callbacks, promises, child processes, async/await and sync functions. A drop-in replacement for [async-done][] - pass 100% of its tests plus more")
