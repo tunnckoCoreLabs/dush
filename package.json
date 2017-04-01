@@ -28,10 +28,10 @@
   },
   "dependencies": {},
   "devDependencies": {
-    "commitizen": "~2.9.6",
-    "cz-conventional-changelog": "2.0.0",
+    "commitizen": "~2.7.0",
+    "cz-conventional-changelog": "1.1.5",
     "mukla": "^0.4.8",
-    "npm-run-all": "~4.0.2",
+    "npm-run-all": "~3.1.2",
     "nyc": "^10.1.2",
     "pre-commit": "^1.2.2",
     "rimraf": "^2.6.1",
