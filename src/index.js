@@ -71,6 +71,8 @@ export default function dush () {
      * or properties to the instance. Useful if you want to make
      * dush to work with DOM for example.
      *
+     * **Example**
+     *
      * ```js
      * const app = dush()
      *
@@ -88,13 +90,14 @@ export default function dush () {
      * ```
      *
      * @name   .use
-     * @param  {Function} `plugin` A function passed with `(app)` signature
-     * @return {Object} The `dush` instance for chaining
+     * @param  {Function} `plugin` A function passed with `(app, options)` signature
+     * @param  {Object} `options` optional, passed as second argument to `plugin` function
+     * @return {Object} self "app" for chaining
      * @api public
      */
 
-    use (plugin) {
-      const ret = plugin(app)
+    use (plugin, options) {
+      const ret = plugin(app, options)
       return ret || app
     },
 
@@ -124,7 +127,7 @@ export default function dush () {
      * @param  {Function} `handler` Function to call in response to given event
      * @param  {Boolean} `once` Make `handler` be called only once,
      *                          the `.once` method use this internally
-     * @return {Object} The `dush` instance for chaining
+     * @return {Object} self "app" for chaining
      * @api public
      */
 
@@ -174,7 +177,7 @@ export default function dush () {
      * @name   .once
      * @param  {String} `name` Type of event to listen for, or `'*'` for all events
      * @param  {Function} `handler` Function to call in response to given event
-     * @return {Object} The `dush` instance for chaining
+     * @return {Object} self "app" for chaining
      * @api public
      */
 
@@ -214,7 +217,7 @@ export default function dush () {
      * @name   .off
      * @param  {String} `name` Type of event to listen for, or `'*'` for all events
      * @param  {Function} `handler` Function to call in response to given event
-     * @return {Object} The `dush` instance for chaining
+     * @return {Object} self "app" for chaining
      * @api public
      */
 
@@ -260,7 +263,7 @@ export default function dush () {
      * @name   .emit
      * @param  {String} `name` The name of the event to invoke
      * @param  {any} `args` Any number of arguments of any type of value, passed to each listener
-     * @return {Object} The `dush` instance for chaining
+     * @return {Object} self "app" for chaining
      * @api public
      */
 

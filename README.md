@@ -189,13 +189,14 @@ console.log(emitter._allEvents.foo.length) // => 2
 console.log(emitter._allEvents.bar.length) // => 1
 ```
 
-### [.use](src/index.js#L96)
+### [.use](src/index.js#L99)
 > Invokes `plugin` function immediately, which is passed with `app` instance. You can use it for adding more methods or properties to the instance. Useful if you want to make dush to work with DOM for example.
 
 **Params**
 
-* `plugin` **{Function}**: A function passed with `(app)` signature    
-* `returns` **{Object}**: The `dush` instance for chaining  
+* `plugin` **{Function}**: A function passed with `(app, options)` signature    
+* `options` **{Object}**: optional, passed as second argument to `plugin` function    
+* `returns` **{Object}**: self "app" for chaining  
 
 **Example**
 
@@ -215,7 +216,7 @@ console.log(app.foo) // => 'bar'
 app.hello('World')
 ```
 
-### [.on](src/index.js#L131)
+### [.on](src/index.js#L134)
 > Add `handler` for `name` event.
 
 See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
@@ -225,7 +226,7 @@ See [JSBin Example](http://jsbin.com/xeketuruto/edit?js,console).
 * `name` **{String}**: Type of event to listen for, or `'*'` for all events    
 * `handler` **{Function}**: Function to call in response to given event    
 * `once` **{Boolean}**: Make `handler` be called only once, the `.once` method use this internally    
-* `returns` **{Object}**: The `dush` instance for chaining  
+* `returns` **{Object}**: self "app" for chaining  
 
 **Example**
 
@@ -243,7 +244,7 @@ emitter
 emitter.emit('hi', 'world')
 ```
 
-### [.once](src/index.js#L181)
+### [.once](src/index.js#L184)
 > Add `handler` for `name` event that will be called only one time.
 
 See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
@@ -252,7 +253,7 @@ See [JSBin Example](http://jsbin.com/teculorima/edit?js,console).
 
 * `name` **{String}**: Type of event to listen for, or `'*'` for all events    
 * `handler` **{Function}**: Function to call in response to given event    
-* `returns` **{Object}**: The `dush` instance for chaining  
+* `returns` **{Object}**: self "app" for chaining  
 
 **Example**
 
@@ -273,7 +274,7 @@ emitter
 console.log(called) // => 1
 ```
 
-### [.off](src/index.js#L221)
+### [.off](src/index.js#L224)
 > Remove `handler` for `name` event. If `handler` not passed will remove **all** listeners for that `name` event.
 
 See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
@@ -282,7 +283,7 @@ See [JSBin Example](http://jsbin.com/nujucoquvi/3/edit?js,console).
 
 * `name` **{String}**: Type of event to listen for, or `'*'` for all events    
 * `handler` **{Function}**: Function to call in response to given event    
-* `returns` **{Object}**: The `dush` instance for chaining  
+* `returns` **{Object}**: self "app" for chaining  
 
 **Example**
 
@@ -306,7 +307,7 @@ emitter.off('foo')
 emitter.emit('foo')
 ```
 
-### [.emit](src/index.js#L267)
+### [.emit](src/index.js#L270)
 > Invoke all handlers for given `name` event. If present, `'*'` listeners are invoked too with `(type, ...rest)` signature, where the `type` argument is a string representing the name of the called event; and all of the rest arguments.
 
 See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
@@ -315,7 +316,7 @@ See [JSBin Example](http://jsbin.com/muqujavolu/edit?js,console).
 
 * `name` **{String}**: The name of the event to invoke    
 * `args` **{any}**: Any number of arguments of any type of value, passed to each listener    
-* `returns` **{Object}**: The `dush` instance for chaining  
+* `returns` **{Object}**: self "app" for chaining  
 
 **Example**
 
