@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.0.5"></a>
+## [3.0.5](https://github.com/tunnckoCore/dush/compare/v3.0.4...v3.0.5) (2017-07-16)
+
+
+### Bug Fixes
+
+* **update:** add eslintrc and format the codebase ([c7162ce](https://github.com/tunnckoCore/dush/commit/c7162ce))
+
+
+
 <a name="3.0.4"></a>
 ## [3.0.4](https://github.com/tunnckocore/dush/compare/v3.0.3...v3.0.4) (2017-04-02)
 
