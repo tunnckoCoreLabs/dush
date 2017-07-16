@@ -13,7 +13,9 @@ var test = require('mukla')
 var dush = require('./dist/dush.common')
 var app = dush()
 
-test('should return an instance with methods and `._allEvents` object', function (done) {
+test('should return an instance with methods and `._allEvents` object', function (
+  done
+) {
   test.strictEqual(typeof app._allEvents, 'object')
   test.strictEqual(typeof app.use, 'function')
   test.strictEqual(typeof app.on, 'function')
@@ -23,7 +25,9 @@ test('should return an instance with methods and `._allEvents` object', function
   done()
 })
 
-test('should instace has ._allEvents object that contains all handlers', function (done) {
+test('should instace has ._allEvents object that contains all handlers', function (
+  done
+) {
   var fn = function () {}
 
   app.on('aaa', fn)
@@ -76,9 +80,11 @@ test('should .on register multiple handlers', function (done) {
   done()
 })
 
-test('should handlers added with .once be called one time only', function (done) {
+test('should handlers added with .once be called one time only', function (
+  done
+) {
   var called = 0
-  app.once('bar', function () {
+  app.once('bar', function (xx) {
     called++
   })
 
@@ -111,10 +117,7 @@ test('should .off("foo", fn) remove the handler', function (done) {
 })
 
 test('should .off("foo") remove all "foo" handlers', function (done) {
-  app
-    .on('zzz', function () {})
-    .on('zzz', function () {})
-    .off('zzz')
+  app.on('zzz', function () {}).on('zzz', function () {}).off('zzz')
 
   test.strictEqual(app._allEvents.zzz.length, 0)
   done()
@@ -171,6 +174,7 @@ test('should return app if .use(plugin) dont', function (done) {
 test('should not allow emitting the wildcard (issue#5)', function (done) {
   var emitter = dush()
 
+  // eslint-disable-next-line max-params
   emitter.on('*', function (name, a, b, c) {
     test.strictEqual(name, 'foo')
     test.strictEqual(a, 1)
@@ -204,6 +208,7 @@ test('should not add additional arguments when emit', function (done) {
 
 test('should support to emit any number of arguments', function (done) {
   dush()
+    // eslint-disable-next-line max-params
     .on('zazzie', function (aa, bb, cc, dd, ee) {
       test.strictEqual(aa, 1)
       test.strictEqual(bb, 2)
@@ -238,7 +243,9 @@ test('should context of listener be the listener', function (done) {
   app.emit('func')
 })
 
-test('should be able to `.off` the `.once` listeners (issue #7)', function (done) {
+test('should be able to `.off` the `.once` listeners (issue #7)', function (
+  done
+) {
   var emitter = dush()
   var called = 0
 

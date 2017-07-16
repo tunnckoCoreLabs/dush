@@ -224,7 +224,9 @@ export default function dush () {
     off (name, handler) {
       if (handler && app._allEvents[name]) {
         const fnStr = handler.toString()
-        app._allEvents[name] = app._allEvents[name].filter((func) => func.__sourceString !== fnStr)
+        app._allEvents[name] = app._allEvents[name].filter(
+          (func) => func.__sourceString !== fnStr
+        )
       } else if (name) {
         app._allEvents[name] = []
       } else {
@@ -269,9 +271,13 @@ export default function dush () {
 
     emit (name) {
       if (name !== '*') {
-        var args = [].slice.call(arguments);
-        (app._allEvents[name] || []).map((handler) => { handler.apply(handler, args.slice(1)) });
-        (app._allEvents['*'] || []).map((handler) => { handler.apply(handler, args) })
+        var args = [].slice.call(arguments)
+        ;(app._allEvents[name] || []).map((handler) => {
+          handler.apply(handler, args.slice(1))
+        })
+        ;(app._allEvents['*'] || []).map((handler) => {
+          handler.apply(handler, args)
+        })
       }
 
       return app
