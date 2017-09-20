@@ -120,9 +120,14 @@ or using [unpkg](https://unpkg.com) CDN
 ```html
 <script src="https://unpkg.com/dush/dist/dush.umd.js"></script>
 ```
-
 > **Note:** Don't use Unpkg's short-hand endpoint `https://unpkg.com/dush`, 
 since it points to CommonJS bundle.
+
+or using [jsDelivr](https://www.jsdelivr.com/package/npm/dush) CDN
+
+```html
+<script src="https://cdn.jsdelivr.net/npm/dush/dist/dush.umd.js">
+```
 
 ## Usage
 
