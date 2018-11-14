@@ -296,3 +296,25 @@ test('should `.off()` remove all listeners', function (done) {
   test.strictEqual(allEvents.length, 0)
   done()
 })
+
+test('should `.off()` be able to differentiate between similar handler functions', function (done) {
+  var emitter = dush()
+  var calls = 0
+  var funcA = function () {
+    calls++
+  }
+  var funcB = function () {
+    calls++
+  }
+  emitter.on('a', funcA)
+  emitter.on('a', funcB)
+  emitter.emit('a')
+  test.strictEqual(calls, 2)
+  emitter.off('a', funcB)
+  emitter.emit('a')
+  test.strictEqual(calls, 3)
+  emitter.off('a', funcA)
+  emitter.emit('a')
+  test.strictEqual(calls, 3)
+  done()
+})
