@@ -43,7 +43,8 @@
     "standard-version": "^4.4.0"
   },
   "files": [
-    "dist/"
+    "dist",
+    "src"
   ],
   "keywords": [
     "browser",

@@ -267,7 +267,8 @@ function dush () {
 
     emit: function emit (name) {
       if (name !== '*') {
-        var args = [].slice.call(arguments);(app._allEvents[name] || []).map(function (handler) {
+        var args = [].slice.call(arguments)
+        ;(app._allEvents[name] || []).map(function (handler) {
           handler.apply(handler, args.slice(1));
         })
         ;(app._allEvents['*'] || []).map(function (handler) {
