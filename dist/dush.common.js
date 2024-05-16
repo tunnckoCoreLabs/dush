@@ -135,15 +135,12 @@ function dush () {
       var e = app._allEvents[name] || (app._allEvents[name] = []);
 
       function func () {
-        if (!func.called) {
-          app.off(name, func);
-          handler.apply(handler, arguments);
-          func.called = true;
-        }
+        app.off(name, func);
+        handler.apply(handler, arguments);
       }
+      func.fn = handler;
 
       var fn = once ? func : handler;
-      fn.__sourceString = handler.toString();
 
       e.push(fn);
       return app
@@ -223,9 +220,8 @@ function dush () {
 
     off: function off (name, handler) {
       if (handler && app._allEvents[name]) {
-        var fnStr = handler.toString();
         app._allEvents[name] = app._allEvents[name].filter(
-          function (func) { return func.__sourceString !== fnStr; }
+          function (func) { return func !== handler && func !== handler.fn; }
         );
       } else if (name) {
         app._allEvents[name] = [];
