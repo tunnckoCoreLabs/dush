@@ -2,6 +2,21 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.0"></a>
+# [3.1.0](https://github.com/tunnckocore/dush/compare/v3.0.5...v3.1.0) (2024-05-16)
+
+
+### Bug Fixes
+
+* delete npm lock file ([8f9cbc7](https://github.com/tunnckocore/dush/commit/8f9cbc7))
+
+
+### Features
+
+* ref-based off-ing, fixes #22 and #42 ([c7809c7](https://github.com/tunnckocore/dush/commit/c7809c7)), closes [#22](https://github.com/tunnckocore/dush/issues/22) [#42](https://github.com/tunnckocore/dush/issues/42)
+
+
+
 <a name="3.0.5"></a>
 ## [3.0.5](https://github.com/tunnckoCore/dush/compare/v3.0.4...v3.0.5) (2017-07-16)
 
