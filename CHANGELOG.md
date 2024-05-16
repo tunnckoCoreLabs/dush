@@ -2,6 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="3.1.1"></a>
+## [3.1.1](https://github.com/tunnckocore/dush/compare/v3.1.0...v3.1.1) (2024-05-16)
+
+
+### Bug Fixes
+
+* include src in npm pkg ([afcb7f8](https://github.com/tunnckocore/dush/commit/afcb7f8))
+
+
+
 <a name="3.1.0"></a>
 # [3.1.0](https://github.com/tunnckocore/dush/compare/v3.0.5...v3.1.0) (2024-05-16)
 
